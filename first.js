@@ -574,3 +574,49 @@ function showCompareModal() {
     // Open Bootstrap Modal
     new bootstrap.Modal(document.getElementById('compareModal')).show();
 }
+// ==================== 9. BRAND CARD CLICK LOGIC ====================
+
+function filterByBrandRedirect(brandName) {
+    // 1. Go to the Inventory Page
+    showPage('inventory');
+
+    // 2. Wait a split second for the page to switch, then filter
+    setTimeout(() => {
+        // Set the filter
+        filterCars(brandName);
+        
+        // Update the visual dropdown text to match
+        updateStockDisplay(brandName);
+        
+        // Scroll slightly down to the cars so the user sees them
+        const grid = document.getElementById('inventoryGrid');
+        if (grid) {
+            grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, 100);
+}
+// ==================== 10. COMING SOON LOGIC ====================
+function showComingSoon(brandName) {
+    // 1. Set the Title
+    document.getElementById("carTitle").innerText = brandName;
+    
+    // 2. Set the Body Content (Icon + Message)
+    const modalBody = document.getElementById("carBody");
+    modalBody.innerHTML = `
+        <div class="text-center py-5">
+            <i class="bi bi-cone-striped display-1 text-warning mb-4"></i>
+            <h3 class="text-white fw-bold">Stock Currently Unavailable</h3>
+            <p class="text-muted fs-5 mt-3">
+                We are currently sourcing the finest examples of 
+                <span class="text-white fw-bold">${brandName}</span> for our showroom.
+            </p>
+            <div class="mt-4">
+                <span class="badge bg-dark border border-secondary p-2">Status: Coming Soon</span>
+            </div>
+            <button class="btn btn-outline-light mt-4 px-4" data-bs-dismiss="modal">Close</button>
+        </div>
+    `;
+
+    // 3. Show the Modal
+    new bootstrap.Modal(document.getElementById("carModal")).show();
+}

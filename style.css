@@ -193,118 +193,81 @@ body {
 }
 
 /* BRAND CARDS */
+/* ==================== INTERMEDIATE MODERN BRAND CARDS ==================== */
+
 .brand-card {
-    background: white;
-    border: 2px solid #e9ecef;
-    border-radius: 20px;
-    padding: 40px 10px;
+    /* 1. Clean Dark Background (Lighter than the page background) */
+    background-color: #1e1e1e; 
+    
+    /* 2. Subtle Border */
+    border: 1px solid #333;
+    border-radius: 16px; /* Moderately rounded corners */
+    
+    /* 3. Spacing & Layout */
+    padding: 30px 20px;
     text-align: center;
-    transition: all 0.3s ease;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    
+    /* 4. Smooth Transition for Hover */
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
-.brand-card:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    border-color: #d0d0d0;
+
+
+/* A small blue accent line at the bottom (Optional, looks professional) */
+.brand-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+  
+    transition: width 0.3s ease;
 }
 
+.brand-card:hover::after {
+    width: 100%; /* Line expands on hover */
+}
+
+/* The Circle Wrapper for the Logo */
 .brand-logo-wrapper {
-    width: 140px;
-    height: 140px;
-    background: #1a1a1a;
+    width: 100px;
+    height: 100px;
+    background: #121212; /* Darker circle inside the card */
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 25px;
-    border: 2px solid #e9ecef;
-    border-color: #333;
+    margin: 0 auto 20px auto; /* Centers it */
+    border: 1px solid #333;
+    transition: border-color 0.3s ease;
 }
 
+
 .brand-logo-wrapper img {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     object-fit: contain;
 }
 
+/* Typography */
 .brand-card h5 {
-    color: #2c3e50;
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-.brand-card p {
-    color: #7f8c8d;
-    font-size: 14px;
-    margin-bottom: 15px;
-    font-style: italic;
-}
-
-.brand-stats {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #e9ecef;
-}
-
-.brand-stat-item {
-    text-align: center;
-}
-
-.brand-stat-item .stat-number {
-    font-size: 20px;
-    font-weight: 700;
-    color: #3498db;
-    display: block;
-}
-
-.brand-stat-item .stat-label {
-    font-size: 11px;
-    color: #95a5a6;
-    text-transform: uppercase;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 8px;
     letter-spacing: 0.5px;
 }
 
-.brand-section-header {
-    text-align: center;
-    margin-bottom: 60px;
+.brand-card p {
+    color: #999; /* Medium Grey */
+    font-size: 0.9rem;
+    margin-bottom: 0;
 }
-
-.brand-section-header h2 {
-    font-size: 42px;
-    font-weight: 800;
-    color: #2c3e50;
-    margin-bottom: 15px;
-}
-
-.brand-section-header p {
-    color: #7f8c8d;
-    font-size: 18px;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.brand-category {
-    margin-bottom: 60px;
-}
-
-.brand-category h3 {
-    font-size: 28px;
-    font-weight: 700;
-    color: #34495e;
-    margin-bottom: 30px;
-    padding-bottom: 15px;
-    border-bottom: 3px solid #3498db;
-    display: inline-block;
-}
-
 /* SERVICE CARDS */
 .service-card {
     background: white;

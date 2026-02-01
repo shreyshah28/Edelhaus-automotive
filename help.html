@@ -38,10 +38,10 @@
                         <a class="nav-link" onclick="showPage('inventory')">Inventory</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#brands">Brands</a>
+                        <a class="nav-link"onclick="showPage('brands')">Brands</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
+                        <a class="nav-link" onclick="showPage('services')">Services</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" onclick="showPage('contact')">Contact</a>
@@ -243,16 +243,18 @@
 
 <div id="brands" class="page-section">
     <div class="container my-5">
-        <div class="brand-section-header">
+        <div class="brand-section-header reveal">
             <h2>Premium Automotive Brands</h2>
-            <p>Discover the world's most prestigious automotive manufacturers.</p>
+            <p class="text-muted">Discover the world's most prestigious automotive manufacturers.</p>
         </div>
         
-        <div class="brand-category">
-            <h3><i class="bi bi-gem me-2"></i>Ultra Luxury Brands</h3>
-            <div class="row g-4">
+        <div class="brand-category reveal">
+            <h3 class="text-white mb-5"><i class="bi bi-gem me-2" style="color:#3498db;"></i>Our Collection</h3>
+            
+            <div class="row g-4 justify-content-center">
+                
                 <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="brand-card">
+                    <div class="brand-card" onclick="filterByBrandRedirect('Rolls-Royce')">
                         <div class="brand-logo-wrapper">
                             <img src="LOGOS/ROLLS_ROYCE_LOGO.webp" alt="Rolls Royce">
                         </div>
@@ -260,17 +262,162 @@
                         <p>"Strive for Perfection"</p>
                     </div>
                 </div>
-                 <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="brand-card">
+
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="brand-card" onclick="filterByBrandRedirect('Bentley')">
                         <div class="brand-logo-wrapper">
-                            <img src="LOGOS/BENATLY_LOGO.jpg" alt="Bentley">
+                            <img src="LOGOS/B_logo.jpg" alt="Bentley">
                         </div>
                         <h5>Bentley</h5>
                         <p>"Be Extraordinary"</p>
                     </div>
                 </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="brand-card" onclick="filterByBrandRedirect('Porsche')">
+                        <div class="brand-logo-wrapper">
+                            <img src="LOGOS/PORSCHE_LOGO.webp" alt="Porsche">
+                        </div>
+                        <h5>Porsche</h5>
+                        <p>"There is no substitute"</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="brand-card" onclick="filterByBrandRedirect('Ferrari')">
+                        <div class="brand-logo-wrapper">
+                            <img src="LOGOS/Ferrari_Logo.jpg" alt="Ferrari">
+                        </div>
+                        <h5>Ferrari</h5>
+                        <p>"We are the competition"</p>
+                    </div>
+                </div>
+
+                 <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="brand-card" onclick="filterByBrandRedirect('Mercedes-Benz')">
+                        <div class="brand-logo-wrapper">
+                            <img src="LOGOS/Mercedes_Benz-Logo.png" alt="Mercedes">
+                        </div>
+                        <h5>Mercedes-Benz</h5>
+                        <p>"The Best or Nothing"</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                  <div class="brand-card" onclick="showComingSoon('Bugatti')">
+                      <div class="brand-logo-wrapper">
+                         <img src="LOGOS/Bugatti.jpg" alt="Bugatti">
+                      </div>
+                    <h5>Bugatti</h5>
+                    <p>"If comparable, it is no longer Bugatti"</p>
+                 </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="brand-card" onclick="showComingSoon('Pagani')">
+                      <div class="brand-logo-wrapper">
+                         <img src="LOGOS/Pagani.jpg" alt="Pagani">
+                     </div>
+                    <h5>Pagani</h5>
+                    <p>"Art and Science"</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="brand-card" onclick="showComingSoon('Koenigsegg')">
+                      <div class="brand-logo-wrapper">
+                         <img src="LOGOS/Koenigsegg.jpg" alt="Koenigsegg">
+                     </div>
+                    <h5>Koenigsegg</h5>
+                    <p>"Spped and class "</p>
+                    </div>
+                </div>
+
             </div>
         </div>
+    </div>
+</div>
+<div id="services" class="page-section">
+    <div class="container my-5">
+        <div class="text-center mb-5 reveal">
+            <h2 class="display-5 fw-bold mb-3">Our Premium Services</h2>
+            <p class="text-muted fs-5">A complete ecosystem for the luxury automobile enthusiast.</p>
+        </div>
+
+        <div class="row g-4 reveal">
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <i class="bi bi-patch-check"></i>
+                    </div>
+                    <h4>Edelhaus Certified</h4>
+                    <p>Every vehicle undergoes a rigorous 150-point inspection.</p>
+                </div>
+                </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <i class="bi bi-patch-check"></i>
+                    </div>
+                    <h4>Edelhaus Certified</h4>
+                    <p>Every vehicle undergoes a rigorous 150-point inspection.</p>
+                </div>
+                </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <i class="bi bi-patch-check"></i>
+                    </div>
+                    <h4>Edelhaus Certified</h4>
+                    <p>Every vehicle undergoes a rigorous 150-point inspection.</p>
+                </div>
+                </div>        
+            </div>
+            <div class="row justify-content-center mt-5 pt-4 reveal">
+    <div class="col-lg-8">
+        <div class="service-booking-card">
+            <h3 class="text-center mb-4"><i class="bi bi-calendar-check me-2 text-primary"></i>Schedule an Appointment</h3>
+            <p class="text-center text-muted mb-4">Fill out the form below and our service advisor will contact you shortly.</p>
+            
+            <form id="serviceForm">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="tel" class="form-control" placeholder="Phone Number" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" placeholder="Car Model (e.g. Porsche 911)" required>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="form-select">
+                            <option selected>Select Service Type</option>
+                            <option value="1">Routine Maintenance</option>
+                            <option value="2">Detailing & Ceramic Coating</option>
+                            <option value="3">Repair / Diagnostics</option>
+                            <option value="4">Consignment (Sell my Car)</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <input type="date" class="form-control text-muted">
+                    </div>
+                    <div class="col-12">
+                        <textarea class="form-control" rows="3" placeholder="Any specific issues or requests?"></textarea>
+                    </div>
+
+                    <div class="col-12 text-center mt-3">
+                        <button type="submit" class="btn btn-gradient px-5 py-2">
+                            Request Appointment
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+            
+            </div>
     </div>
 </div>
 
