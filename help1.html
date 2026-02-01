@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarWorld – Premium Cars</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="style1.css" rel="stylesheet"> 
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+    <div class="container">
+        <!-- LOGO -->
+        <a class="navbar-brand" href="#" onclick="showPage('home')">
+            <img src="https://dummyimage.com/150x50/24ae8e/ffffff&text=CarWorld" alt="Edelhaus automotive">
+        </a>
+
+        <!-- Toggle -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Menu -->
+        <div class="collapse navbar-collapse justify-content-center" id="navMenu">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" onclick="showPage('home')">Home</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="showPage('inventory')">Inventory</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="showPage('brands')">Brands</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="showPage('services')">Services</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="showPage('about')">About</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="showPage('contact')">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Right Side Icons -->
+        <div class="navbar-icons d-none d-lg-flex">
+            <i class="bi bi-search mx-2" onclick="alert('Search functionality coming soon!')"></i>
+            <i class="bi bi-person mx-2" onclick="alert('Login functionality coming soon!')"></i>
+        </div>
+    </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="home" class="page-section active">
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-3">Premium Car Showroom</h1>
+            <p class="lead fs-4 mb-4">Experience Power, Luxury & Performance</p>
+            <button class="btn btn-light btn-lg px-5 py-3" onclick="showPage('inventory')">
+                <i class="bi bi-collection me-2"></i>Explore Our Collection
+            </button>
+        </div>
+    </section>
+
+    <!-- FEATURED STATS -->
+    <div class="container my-5">
+        <div class="row g-4 text-center">
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <i class="bi bi-car-front-fill display-4 mb-3"></i>
+                    <h3 class="fw-bold">50+</h3>
+                    <p class="mb-0">Premium Cars</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <i class="bi bi-award-fill display-4 mb-3"></i>
+                    <h3 class="fw-bold">15+</h3>
+                    <p class="mb-0">Luxury Brands</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <i class="bi bi-people-fill display-4 mb-3"></i>
+                    <h3 class="fw-bold">2000+</h3>
+                    <p class="mb-0">Happy Customers</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <i class="bi bi-shield-check display-4 mb-3"></i>
+                    <h3 class="fw-bold">100%</h3>
+                    <p class="mb-0">Verified Quality</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOP SELLING CARS - Dynamic -->
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3">Featured Premium Cars</h2>
+            <p class="text-muted fs-5">Handpicked selection of our finest vehicles</p>
+        </div>
+
+        <!-- Featured Cars Grid (will be populated by JS) -->
+        <div class="row g-4" id="featuredCarsGrid"></div>
+    </div>
+
+    <!-- WHY CHOOSE US -->
+    <div class="container my-5 py-5">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3">Why Choose CarWorld?</h2>
+            <p class="text-muted fs-5">Your trusted partner in premium automotive excellence</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4 text-center">
+                <div class="p-4">
+                    <i class="bi bi-shield-check display-1 text-primary mb-3"></i>
+                    <h4 class="fw-bold mb-3">Certified Quality</h4>
+                    <p class="text-muted">Every vehicle undergoes rigorous 150-point inspection</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="p-4">
+                    <i class="bi bi-cash-coin display-1 text-success mb-3"></i>
+                    <h4 class="fw-bold mb-3">Best Pricing</h4>
+                    <p class="text-muted">Transparent pricing with flexible financing options</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="p-4">
+                    <i class="bi bi-headset display-1 text-info mb-3"></i>
+                    <h4 class="fw-bold mb-3">Expert Support</h4>
+                    <p class="text-muted">Dedicated team available for all your needs</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CALL TO ACTION -->
+    <div class="container my-5">
+        <div class="text-center p-5 rounded" style="background: linear-gradient(135deg, #3498db, #2ecc71); color: white;">
+            <h2 class="display-6 fw-bold mb-3">Ready to Find Your Dream Car?</h2>
+            <p class="lead mb-4">Schedule a test drive or visit our showroom today</p>
+            <button class="btn btn-light btn-lg px-5 me-3" onclick="showPage('contact')">
+                <i class="bi bi-telephone me-2"></i>Contact Us
+            </button>
+            <button class="btn btn-outline-light btn-lg px-5" onclick="showPage('inventory')">
+                <i class="bi bi-collection me-2"></i>View Inventory
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- INVENTORY PAGE -->
+<div id="inventory" class="page-section">
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Our Complete Inventory</h2>
+        
+        <!-- STOCK DISPLAY -->
+        <div id="stockDisplay" class="mb-5"></div>
+        
+        <!-- CATEGORY FILTERS -->
+        <div class="text-center mb-4" id="filterButtons">
+            <button class="filter-btn active" onclick="filterCars('all')">All Cars</button>
+            <button class="filter-btn" onclick="filterCars('sports')">Sports</button>
+            <button class="filter-btn" onclick="filterCars('luxury')">Luxury</button>
+            <button class="filter-btn" onclick="filterCars('suv')">SUVs</button>
+        </div>
+
+        <!-- NEW: BRAND FILTERS -->
+        <div class="text-center mb-5" id="brandFilterButtons">
+            <!-- Brand buttons populated by JS -->
+        </div>
+
+        <!-- CARS GRID -->
+        <div class="row g-4" id="inventoryGrid"></div>
+
+        <!-- PAGINATION -->
+        <div class="d-flex justify-content-center mt-4">
+            <nav>
+                <ul class="pagination pagination-lg" style="background-color: #2ecc71;" id="inventoryPagination">
+                    <li class="page-item"><button class="page-link" onclick="changePage('prev')">&laquo;</button></li>
+                    <li class="page-item"><button class="page-link" onclick="changePage('next')">&raquo;</button></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+<!-- BRANDS PAGE -->
+<div id="brands" class="page-section">
+    <div class="container my-5">
+        <div class="brand-section-header">
+            <h2>Premium Automotive Brands</h2>
+            <p>Discover the world's most prestigious automotive manufacturers, each representing excellence in engineering, design, and innovation.</p>
+        </div>
+        
+        <!-- Ultra Luxury Brands -->
+        <div class="brand-category">
+            <h3><i class="bi bi-gem me-2"></i>Ultra Luxury Brands</h3>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="brand-card">
+                        <div class="brand-logo-wrapper">
+                            <img src="LOGOS/ROLLS_ROYCE_LOGO.webp" alt="Rolls Royce">
+                        </div>
+                        <h5>Rolls Royce</h5>
+                        <p>"Strive for Perfection"</p>
+                        <div class="brand-stats">
+                            <div class="brand-stat-item">
+                                <span class="stat-number">5</span>
+                                <span class="stat-label">Models</span>
+                            </div>
+                            <div class="brand-stat-item">
+                                <span class="stat-number">12</span>
+                                <span class="stat-label">In Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="brand-card">
+                        <div class="brand-logo-wrapper">
+                            <img src="LOGOS/BENATLY_LOGO.jpg" alt="Bentley">
+                        </div>
+                        <h5>Bentley</h5>
+                        <p>"Be Extraordinary"</p>
+                        <div class="brand-stats">
+                            <div class="brand-stat-item">
+                                <span class="stat-number">7</span>
+                                <span class="stat-label">Models</span>
+                            </div>
+                            <div class="brand-stat-item">
+                                <span class="stat-number">18</span>
+                                <span class="stat-label">In Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="brand-card">
+                        <div class="brand-logo-wrapper">
+                            <img src="LOGOS/MAYBATCH_LOGO.png" alt="Maybach">
+                        </div>
+                        <h5>Maybach</h5>
+                        <p>"Luxury Redefined"</p>
+                        <div class="brand-stats">
+                            <div class="brand-stat-item">
+                                <span class="stat-number">3</span>
+                                <span class="stat-label">Models</span>
+                            </div>
+                            <div class="brand-stat-item">
+                                <span class="stat-number">8</span>
+                                <span class="stat-label">In Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="brand-card">
+                        <div class="brand-logo-wrapper">
+                            <img src="LOGOS/ASTON_MARTIN_LOGO.webp" alt="Aston Martin">
+                        </div>
+                        <h5>Aston Martin</h5>
+                        <p>"Power, Beauty, Soul"</p>
+                        <div class="brand-stats">
+                            <div class="brand-stat-item">
+                                <span class="stat-number">8</span>
+                                <span class="stat-label">Models</span>
+                            </div>
+                            <div class="brand-stat-item">
+                                <span class="stat-number">15</span>
+                                <span class="stat-label">In Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Brands -->
+        <div class="brand-category">
+            <h3><i class="bi bi-speedometer2 me-2"></i>Performance & Sports Brands</h3>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="brand-card">
+                        <div class="brand-logo-wrapper">
+                            <img src="LOGOS/Ferrari_Logo.jpg" alt="Ferrari">
+                        </div>
+                        <h5>Ferrari</h5>
+                        <p>"Racing Heritage"</p>
+                        <div class="brand-stats">
+                            <div class="brand-stat-item">
+                                <span class="stat-number">12</span>
+                                <span class="stat-label">Models</span>
+                            </div>
+                            <div class="brand-stat-item">
+                                <span class="stat-number">22</span>
+                                <span class="stat-label">In Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="brand-card">
+                        <div class="brand-logo-wrapper">
+                            <img src="LOGOS/LEMBORGINI_LOGO.jpg" alt="Lamborghini">
+                        </div>
+                        <h5>Lamborghini</h5>
+                        <p>"Expect the Unexpected"</p>
+                        <div class="brand-stats">
+                            <div class="brand-stat-item">
+                                <span class="stat-number">6</span>
+                                <span class="stat-label">Models</span>
+                            </div>
+                            <div class="brand-stat-item">
+                                <span class="stat-number">14</span>
+                                <span class="stat-label">In Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="brand-card">
+                        <div class="brand-logo-wrapper">
+                            <img src="LOGOS/PORSCHE_LOGO.webp" alt="Porsche">
+                        </div>
+                        <h5>Porsche</h5>
+                        <p>"There Is No Substitute"</p>
+                        <div class="brand-stats">
+                            <div class="brand-stat-item">
+                                <span class="stat-number">15</span>
+                                <span class="stat-label">Models</span>
+                            </div>
+                            <div class="brand-stat-item">
+                                <span class="stat-number">35</span>
+                                <span class="stat-label">In Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="brand-card">
+                        <div class="brand-logo-wrapper">
+                            <img src="LOGOS/MCLAREN_LOGO.jpg" alt="McLaren">
+                        </div>
+                        <h5>McLaren</h5>
+                        <p>"Always Innovating"</p>
+                        <div class="brand-stats">
+                            <div class="brand-stat-item">
+                                <span class="stat-number">9</span>
+                                <span class="stat-label">Models</span>
+                            </div>
+                            <div class="brand-stat-item">
+                                <span class="stat-number">11</span>
+                                <span class="stat-label">In Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Premium Brands -->
+        <div class="brand-category">
+            <h3><i class="bi bi-star me-2"></i>Premium Brands</h3>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="brand-card">
+                        <div class="brand-logo-wrapper">
+                            <img src="LOGOS/Mercedes_Benz-Logo.png" alt="Mercedes-Benz">
+                        </div>
+                        <h5>Mercedes-Benz</h5>
+                        <p>"The Best or Nothing"</p>
+                        <div class="brand-stats">
+                            <div class="brand-stat-item">
+                                <span class="stat-number">25+</span>
+                                <span class="stat-label">Models</span>
+                            </div>
+                            <div class="brand-stat-item">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">In Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="brand-card">
+                        <div class="brand-logo-wrapper">
+                            <img src="LOGOS/BMW_LOGO.webp" alt="BMW">
+                        </div>
+                        <h5>BMW</h5>
+                        <p>"Ultimate Driving Machine"</p>
+                        <div class="brand-stats">
+                            <div class="brand-stat-item">
+                                <span class="stat-number">28+</span>
+                                <span class="stat-label">Models</span>
+                            </div>
+                            <div class="brand-stat-item">
+                                <span class="stat-number">45+</span>
+                                <span class="stat-label">In Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="brand-card">
+                        <div class="brand-logo-wrapper">
+                            <img src="LOGOS/AUDI_LOGO.webp" alt="Audi">
+                        </div>
+                        <h5>Audi</h5>
+                        <p>"Vorsprung durch Technik"</p>
+                        <div class="brand-stats">
+                            <div class="brand-stat-item">
+                                <span class="stat-number">22+</span>
+                                <span class="stat-label">Models</span>
+                            </div>
+                            <div class="brand-stat-item">
+                                <span class="stat-number">40+</span>
+                                <span class="stat-label">In Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="brand-card">
+                        <div class="brand-logo-wrapper">
+                            <img src="LOGOS/RANGE_ROVER_LOGO.webp" alt="Range Rover">
+                        </div>
+                        <h5>Range Rover</h5>
+                        <p>"Above and Beyond"</p>
+                        <div class="brand-stats">
+                            <div class="brand-stat-item">
+                                <span class="stat-number">8</span>
+                                <span class="stat-label">Models</span>
+                            </div>
+                            <div class="brand-stat-item">
+                                <span class="stat-number">25</span>
+                                <span class="stat-label">In Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SERVICES PAGE -->
+<div id="services" class="page-section">
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Our Premium Services</h2>
+        <p class="text-center text-muted mb-5">Experience a complete suite of services tailored to luxury car ownership.</p>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="service-card">
+                    <i class="bi bi-car-front service-icon"></i>
+                    <h4>Certified Pre-Owned</h4>
+                    <p>High-quality, thoroughly inspected luxury cars with complete service history and warranty support.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card">
+                    <i class="bi bi-cash-coin service-icon"></i>
+                    <h4>Finance & Leasing</h4>
+                    <p>Flexible EMI plans, attractive interest rates, and customized leasing options for individuals and corporates.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card">
+                    <i class="bi bi-wrench-adjustable service-icon"></i>
+                    <h4>Premium Car Care</h4>
+                    <p>Expert technicians, genuine parts, detailing, ceramic coating, and 24x7 roadside assistance.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-2">
+            <div class="col-md-4">
+                <div class="service-card">
+                    <i class="bi bi-shield-lock service-icon"></i>
+                    <h4>Insurance & Protection</h4>
+                    <p>Comprehensive insurance, zero depreciation cover, and extended warranty solutions for peace of mind.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card">
+                    <i class="bi bi-arrow-left-right service-icon"></i>
+                    <h4>Buyback & Exchange</h4>
+                    <p>Best resale value, transparent evaluation, and seamless upgrade options to your next dream car.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card">
+                    <i class="bi bi-geo-alt service-icon"></i>
+                    <h4>Doorstep Test Drives</h4>
+                    <p>Experience selected vehicles at your preferred location with a dedicated relationship manager.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ABOUT PAGE -->
+<div id="about" class="page-section">
+    <div class="container my-5">
+        <div class="row align-items-center g-5">
+            <div class="col-md-6">
+                <h2 class="mb-4">About CarWorld</h2>
+                <p class="text-muted">CarWorld is a premium luxury car dealership dedicated to offering the finest selection of high-performance and ultra-luxury vehicles.</p>
+                <p class="text-muted">With years of expertise, a passionate team, and a customer-first approach, CarWorld ensures a seamless buying and ownership experience.</p>
+                <ul class="list-unstyled mt-3">
+                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Handpicked inventory from top global brands</li>
+                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Transparent deals and complete documentation support</li>
+                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Dedicated post-sales relationship management</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <img src="https://images.pexels.com/photos/97079/pexels-photo-97079.jpeg" class="img-fluid rounded shadow" alt="Showroom">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CONTACT PAGE -->
+<div id="contact" class="page-section">
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Get in Touch</h2>
+        <p class="text-center text-muted mb-5">Have questions or want to book a test drive? Reach out and the team will assist you.</p>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <form id="contactForm">
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-control" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-gradient px-4">Submit</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h5>Showroom Address</h5>
+                <p>CarWorld Luxury Motors<br>SG Highway, Ahmedabad, Gujarat, India</p>
+
+                <h5 class="mt-4">Contact Details</h5>
+                <p><i class="bi bi-telephone me-2"></i>+91-98765-43210</p>
+                <p><i class="bi bi-envelope me-2"></i>info@carworldluxury.in</p>
+
+                <h5 class="mt-4">Working Hours</h5>
+                <p>Monday – Saturday: 10:00 AM – 8:00 PM<br>Sunday: 11:00 AM – 6:00 PM</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="carModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="carTitle"></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="carBody"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Our JavaScript -->
+<script src="first.js"></script>
+</body>
+</html>

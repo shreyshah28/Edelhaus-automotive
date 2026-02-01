@@ -1,0 +1,1011 @@
+.page-section:not(#home) {
+    padding-top: 150px; 
+    min-height: 100vh;  
+}
+#home {
+    padding-top: 0;
+}
+body {
+  
+    background: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #000000 100%);
+    color: #f0f0f0; 
+    font-family: 'Montserrat', sans-serif; /* Ensure font is consistent */
+}
+
+.navbar-toggler {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    padding: 0.5rem 0.75rem;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.3);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+/* CAR CARDS */
+.car-card {
+   background: #121212; /* Darker than body */
+    border: 1px solid #333; /* Subtle border */
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.car-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(52, 152, 219, 0.3);
+}
+
+.car-card .img-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 240px;
+    background: #000;
+}
+
+.car-card img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.car-card:hover img {
+    transform: scale(1.1);
+}
+
+.car-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    /* background: linear-gradient(135deg, #3498db, #2ecc71); */
+      background: linear-gradient(to right, #1a252f, #2980b9, #2471a3, #2980b9, #1a252f);
+    color: white;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    z-index: 2;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.car-card .card-body {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.car-subtitle {
+    color: #b0b0b0;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.car-specs {
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.spec-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #cccccc;
+    font-size: 13px;
+    background: #1a1a1a;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border:  1px solid #333;
+}
+
+.spec-item i {
+    color: #3498db;
+    font-size: 16px;
+}
+
+.car-price {
+    font-size: 26px;
+    font-weight: bold;
+    color:white;
+    margin: 15px 0;
+}
+
+.car-card .btn-gradient {
+    margin-top: auto;
+    padding: 12px;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.car-card .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+}
+
+.card-footer-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #333;
+    margin-top: 15px;
+}
+
+.info-badge {
+    background: rgba(52, 152, 219, 0.1);      /* transaparant blue */
+    color: #3498db;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* BUTTON */
+.btn-gradient {
+    background: linear-gradient(135deg, #eef2f3, #8e9eab); /* Platinum Silver */
+    color: #000; /* Black text for high contrast */
+    font-weight: 700;
+    border: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(135deg, #3498db, #2980b9); /* Electric Blue */
+    color: #fff; /* White text on blue */
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.6); /* Blue Glow */
+    transform: translateY(-2px);
+}
+/* MODAL */
+.modal-content {
+    background: white;
+    color: #212529;
+}
+
+.btn-close {
+    filter: none;
+}
+
+/* PAGE SECTIONS */
+.page-section {
+    display: none;
+}
+
+.page-section.active {
+    display: block;
+}
+
+/* BRAND CARDS */
+.brand-card {
+    background: white;
+    border: 2px solid #e9ecef;
+    border-radius: 20px;
+    padding: 40px 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-color: #d0d0d0;
+}
+
+.brand-logo-wrapper {
+    width: 140px;
+    height: 140px;
+    background: #1a1a1a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    border: 2px solid #e9ecef;
+    border-color: #333;
+}
+
+.brand-logo-wrapper img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.brand-card h5 {
+    color: #2c3e50;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.brand-card p {
+    color: #7f8c8d;
+    font-size: 14px;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.brand-stats {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e9ecef;
+}
+
+.brand-stat-item {
+    text-align: center;
+}
+
+.brand-stat-item .stat-number {
+    font-size: 20px;
+    font-weight: 700;
+    color: #3498db;
+    display: block;
+}
+
+.brand-stat-item .stat-label {
+    font-size: 11px;
+    color: #95a5a6;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.brand-section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.brand-section-header h2 {
+    font-size: 42px;
+    font-weight: 800;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.brand-section-header p {
+    color: #7f8c8d;
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.brand-category {
+    margin-bottom: 60px;
+}
+
+.brand-category h3 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #34495e;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #3498db;
+    display: inline-block;
+}
+
+/* SERVICE CARDS */
+.service-card {
+    background: white;
+    border: 2px solid #e9ecef;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(52, 152, 219, 0.2);
+    border-color: #3498db;
+}
+
+.service-card i {
+    font-size: 50px;
+    color: #3498db;
+    margin-bottom: 20px;
+}
+
+.service-card h4 {
+    color: #2c3e50;
+}
+
+.service-card p {
+    color: #7f8c8d;
+}
+
+/* CONTACT FORM */
+.form-control, .form-select {
+    background: #121212;
+    border: 1px solid #333;
+    color: white;
+    padding: 12px;
+}
+
+.form-control:focus, .form-select:focus {
+    background: #000;
+    border-color: #3498db;
+    color: white;
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+}
+
+.form-control::placeholder {
+    color: #95a5a6;
+}
+
+.form-select option {
+    background: white;
+    color: #212529;
+}
+
+.stat-card {
+    /* background: linear-gradient(135deg, #3498db); */
+    background: linear-gradient(135deg,#232545);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    color: white;
+}
+
+.stat-card h2 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* INVENTORY FILTERS */
+.filter-btn {
+    background: #121212; /* Dark Charcoal (matches your cards) */
+    border: 1px solid #333; /* Subtle Border */
+    color: #e0e0e0; /* Silver Text */
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background:  #3498db;
+    border-color: #3498db;
+    color: white;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.4);
+}
+.carousel img {
+    height: 240px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+/* ============================================================================== */
+/* VIDEO HERO SECTION */
+.hero-video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Takes full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 0; 
+    padding: 0;
+}
+
+/* The actual video element */
+.back-video {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1; /* Puts video behind content */
+    object-fit: cover; /* Ensures no black bars */
+}
+
+/* Dark overlay to make text pop */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* 40% dark tint */
+    z-index: 0;
+}
+
+/* The Text Content */
+.hero-content {
+    position: relative;
+    z-index: 1; /* Puts text on top of overlay */
+    padding-top: 80px; /* Space for navbar */
+}
+
+.tracking-wide {
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+}
+
+/* NAVBAR TWEAK */
+/* Important: Make navbar transparent so it sits ON TOP of the video */
+.navbar-custom {
+    background: rgba(0, 0, 0, 0.3) !important; /* Semi-transparent */
+    backdrop-filter: blur(10px); /* Frosty glass effect */
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* When scrolling, turn the navbar solid dark */
+.navbar-custom.scrolled {
+    background: #0f0f0f !important;
+    padding: 0.5rem 0;
+}
+
+/* ====================navbar changes  */
+/* --- LUXURY HEADER STYLES (First Motors Style) --- */
+
+/* Wrapper: The main container for the header */
+.header-custom {
+    transition: all 0.4s ease;
+    padding-top: 15px;
+    /* Gradient fade: Dark at top, clear at bottom for readability */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent); 
+}
+
+/* Scrolled State: Active when you scroll down */
+.header-custom.scrolled {
+    background: #000000; /* Solid Black */
+    padding-top: 5px; /* Compact height */
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Level 1: Brand Text Container */
+.header-top {
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1); /* The Divider Line */
+    margin-bottom: 10px;
+    transition: all 0.4s ease;
+}
+
+/* Hide the divider and margin when scrolled to save space */
+.header-custom.scrolled .header-top {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+/* The Brand Name Text */
+.brand-text {
+    font-family: 'Cinzel', serif; /* Special Luxury Font */
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    letter-spacing: 4px; /* Wide spacing looks expensive */
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    display: block; /* Ensures it takes up the full width */
+}
+
+.brand-text:hover {
+    color: #3498db; /* Electric Blue on hover */
+    text-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+}
+
+/* Shrink the logo text when scrolling */
+.header-custom.scrolled .brand-text {
+    font-size: 24px;
+}
+
+/* Level 2: Navigation Links */
+.navbar-nav .nav-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8) !important;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0 20px !important;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover, 
+.navbar-nav .nav-link.active {
+    color: #ffffff !important;
+}
+
+/* The Gold Underline Animation */
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 1px;
+    background: #3498db;
+    transition: width 0.3s ease;
+}
+
+/* Expand the gold line on hover */
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+    width: 30px;
+}
+
+/* Mobile Tweaks */
+@media (max-width: 991px) {
+    .header-custom {
+        background: #000000; /* Always black on mobile for readability */
+    }
+    .brand-text {
+        font-size: 24px; /* Smaller text on phone */
+    }
+}
+/* --- DARK INTRO SECTION FIX --- */
+
+.intro-section-dark {
+    background-color: #0b0b0b; /* Deep Black/Charcoal Background */
+    background: radial-gradient(circle at 70% 50%, #1a1a1a 0%, #000000 100%); /* Subtle spotlight effect */
+    padding: 100px 0;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+/* Typography */
+.sub-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #b0b0b0; /* Light Grey */
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.main-heading {
+    font-family: 'Cinzel', serif;
+    font-size: 3.5rem; /* Big and Bold */
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #ffffff;
+    line-height: 1.1;
+}
+
+
+.description-text {
+    font-family: 'Montserrat', sans-serif;
+    color: #cccccc; /* Readable light grey */
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    max-width: 90%;
+}
+
+.brand-highlight {
+    color: #3498db; /* Electric Blue */
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+}
+
+/* The "Read More" Button */
+.read-more-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 30px;
+    border: 1px solid #e0e0e0;
+    color: #e0e0e0;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.read-more-btn:hover {
+    background-color: #3498db; /* Blue Background */
+    border-color: #3498db;
+    color: #ffffff; /* White Text */
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.4);
+}
+
+/* --- THE IMAGE BLENDING MAGIC --- */
+.image-wrapper {
+    position: relative;
+    /* This creates the fade effect on the left side of the image */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%, black 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 20%, black 100%);
+}
+
+.blended-image {
+    width: 100%;
+    /* Brightness filter helps darker images pop against black background */
+    filter: brightness(0.9) contrast(1.1); 
+}
+
+/* Mobile Fix: Stack properly on phones */
+@media (max-width: 991px) {
+    .main-heading { font-size: 2.5rem; }
+    .image-wrapper { 
+        margin-top: 50px; 
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 100%);
+        mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 100%);
+    }
+}
+
+/* ==================== DARK PAGINATION STYLES ==================== */
+
+
+.pagination .page-link {
+    background-color: #121212; 
+    border: 1px solid #333;   
+    color: #e0e0e0;          
+    transition: all 0.3s ease;
+}
+
+/* 2. Hover State */
+.pagination .page-link:hover {
+    background-color: #1a1a1a; 
+    color: #3498db;           
+    border-color: #3498db;     
+    transform: translateY(-1.5px); 
+}
+
+/* 3. Active State  */
+.pagination .page-item.active .page-link {
+    background-color: #3498db; 
+    border-color: #3498db;
+    color: #ffffff;           
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.4); 
+}
+
+/* 4. Disabled State */
+.pagination .page-item.disabled .page-link {
+    background-color: #0f0f0f; 
+    border-color: #222;
+    color: #555;               
+}
+/* ==================== 7. FOOTER (First Motors Style) ==================== */
+.footer-custom {
+    background-color: #111; /* Slightly lighter than pure black for depth */
+    padding: 80px 0 30px;
+    color: #b0b0b0;
+    font-size: 14px;
+    position: relative;
+    border-top: 1px solid #222;
+    margin-top: 50px;
+}
+
+.footer-desc {
+    line-height: 1.8;
+    max-width: 400px;
+}
+
+.footer-heading {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+/* Link Styling */
+.footer-links li {
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    color: #b0b0b0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: #3498db;
+    transform: translateX(5px); /* Slide effect */
+}
+
+/* Contact List Styling */
+.footer-contact li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    color: #b0b0b0;
+}
+
+.footer-contact i {
+    color: #3498db;
+    /* color:#1D546D; */
+    font-size: 18px;
+}
+
+/* Social Buttons - Colorful Circular Icons */
+.social-links {
+    display: flex;
+    gap: 12px;
+}
+
+.social-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff !important; /* Force white icon */
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 18px;
+    border: none;
+}
+.social-btn:hover {
+    transform: translateY(-5px); /* Float up effect */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    color: #fff !important;
+}
+
+/* Footer Bottom Line */
+.footer-bottom {
+    border-top: 1px solid #222;
+}
+/* --- SCROLL REVEAL ANIMATION --- */
+.reveal {
+    position: relative;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.reveal.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* --- BACK TO TOP BUTTON --- */
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: none; /* Hidden by default, JS shows it */
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+    transition: all 0.3s ease;
+}
+
+#backToTop:hover {
+    background: #2980b9;
+    transform: translateY(-5px);
+}
+.page-section:not(#home) {
+    padding-top: 150px; 
+    min-height: 100vh;
+}
+#home {
+    padding-top: 0;
+}
+/* ==================== FINAL VISIBILITY FIXES ==================== */
+
+/* 1. Fix "text-muted" (It was too dark grey, now it's silver) */
+.text-muted {
+    color: #b0b0b0 !important;
+}
+
+/* 2. Fix Form Inputs (Ensure typed text is White, not Black) */
+.form-control, .form-select, input, textarea {
+    color: #ffffff !important;
+    background-color: #121212 !important;
+    border: 1px solid #333 !important;
+}
+
+/* 3. Fix Input Placeholders (The text before you type) */
+.form-control::placeholder {
+    color: #6c757d !important; /* Visible Grey */
+    opacity: 1;
+}
+
+/* 4. Fix Modal/Pop-up Text */
+.modal-content {
+    background-color: #121212 !important; /* Dark Background */
+    color: #ffffff !important; /* White Text */
+    border: 1px solid #333;
+}
+
+.modal-header {
+    border-bottom: 1px solid #333;
+}
+
+.btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%); /* Turns the black X to White */
+}
+
+/* 6. Fix Dropdown Menu Text (Brand Filter) */
+.dropdown-menu {
+    background-color: #121212 !important;
+    border: 1px solid #333 !important;
+}
+
+.dropdown-item {
+    color: #e0e0e0 !important;
+}
+
+.dropdown-item:hover {
+    background-color: #3498db !important; /* Blue on Hover */
+    color: #ffffff !important;
+}
+
+/* 7. Ensure Paragraphs are always visible */
+p, h1, h2, h3, h4, h5, h6, span, div {
+    color: inherit; /* Inherits the white/grey from body */
+}
+
+/* ==================== CTA SECTION ==================== */
+.cta-card {
+    background: linear-gradient(145deg, #121212, #0a0a0a); /* subtle 3D depth */
+    border: 1px solid #333;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+/* Add a faint blue glow behind it */
+.cta-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(52, 152, 219, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.cta-card:hover {
+    transform: translateY(-5px);
+    border-color: #3498db; /* Blue border on hover */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Custom Outline Button */
+.btn-outline-custom {
+    background: transparent;
+    border: 2px solid #333;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-custom:hover {
+    border-color: #3498db;
+    background: #3498db;
+    color: white;
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.4);
+}
+/* ==================== DROPDOWN LOGOS ==================== */
+.dropdown-logo {
+    width: 30px;       /* Keep it small */
+    height: 25px;
+    object-fit: contain; /* Don't stretch the logo */
+    margin-right: 10px; /* Space between logo and text */
+    vertical-align: middle;
+    filter: brightness(0) invert(1); /* Turns black logos WHITE (for dark mode) */
+}
+.dropdown-item:hover .dropdown-logo {
+    filter: none; /* Shows original colors when hovered */
+}
+/* ==================== NAVBAR LOGIN ICON ==================== */
+.login-btn-nav {
+    color: #fff !important; /* Default White */
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.login-btn-nav:hover {
+    color: #3498db !important; /* Electric Blue on Hover */
+    transform: scale(1.1); /* Grows slightly */
+    cursor: pointer;
+}
+
+/* Optional: Make the input fields look premium */
+.input-group-text {
+    border-color: #333 !important;
+}
+.form-control:focus {
+    box-shadow: none !important;
+    border-color: #3498db !important; /* Blue border when typing */
+}
+/* --- COLOR SWATCHES --- */
+.color-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.color-dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #333; /* Dark border by default */
+    transition: transform 0.2s, border-color 0.2s;
+    position: relative;
+}
+
+/* Hover effect */
+.color-dot:hover {
+    transform: scale(1.2);
+}
+
+/* Active state (selected color) */
+.color-dot.active {
+    border: 2px solid #fff; /* Bright white border when selected */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+/* ==================== COMPARE CARS STYLES ==================== */
+
+/* 1. Floating Compare Bar */
+#compareBar {
+    background-color: rgba(18, 18, 18, 0.95) !important; /* Semi-transparent dark */
+    backdrop-filter: blur(10px); /* Blur effect behind it */
+    border-top: 1px solid #333;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* 2. Compare Button in Card (Active State) */
+.btn-check-active {
+    background-color: #3498db !important;
+    border-color: #3498db !important;
+    color: white !important;
+}
+
+/* 3. Comparison Modal Table */
+.table-dark {
+    --bs-table-bg: #121212;
+    --bs-table-striped-bg: #1a1a1a;
+    border-color: #333;
+}
+
+.table-dark th img {
+    border: 2px solid #333;
+    padding: 2px;
+    background: #000;
+}
+
+/* 4. Modal Fixes */
+.modal-content {
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}

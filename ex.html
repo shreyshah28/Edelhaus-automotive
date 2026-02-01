@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarWorld – Premium Motors</title>
+
+    <!-- Google Fonts: Montserrat for that premium luxury feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        /* ==================== GLOBAL VARIABLES & RESET ==================== */
+        :root {
+            --bg-body: #050505;
+            --bg-surface: #121212;
+            --bg-surface-hover: #1e1e1e;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --accent: #d4af37; /* Luxury Gold */
+            --accent-hover: #f9ce4e;
+            --border-color: #333333;
+            --font-main: 'Montserrat', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            padding-top: 80px;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-body); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        /* ==================== NAVBAR (Luxury Style) ==================== */
+        .navbar-custom {
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
+        }
+
+        .navbar-custom.scrolled {
+            padding: 0.8rem 0;
+            background: rgba(5, 5, 5, 0.98);
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: white !important;
+        }
+
+        .navbar-brand span { color: var(--accent); }
+
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-weight: 500;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 10px 20px !important;
+            margin: 0 5px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 30px;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+            color: white !important;
+        }
+
+        .navbar-nav .nav-link:hover::after, .navbar-nav .nav-link.active::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .navbar-icons i {
+            color: white;
+            font-size: 18px;
+            margin-left: 20px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .navbar-icons i:hover { color: var(--accent); }
+
+        /* Mobile Toggler */
+        .navbar-toggler {
+            border: none;
+            color: white;
+        }
+        .navbar-toggler:focus { box-shadow: none; }
+
+        /* ==================== TYPOGRAPHY ==================== */
+        h1, h2, h3, h4, h5 {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-subtitle {
+            color: var(--text-muted);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            margin-bottom: 3rem;
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            height: 85vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), 
+                        url('https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=1920') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* Buttons */
+        .btn-luxury {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 15px 40px;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 2px;
+            transition: var(--transition);
+        }
+
+        .btn-luxury:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: black;
+        }
+
+        .btn-primary-custom {
+            background: var(--accent);
+            border: none;
+            color: black;
+            padding: 15px 40px;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 2px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-primary-custom:hover {
+            background: white;
+            color: black;
+        }
+
+        /* ==================== CARDS (Inventory & Featured) ==================== */
+        .car-card {
+            background: var(--bg-surface);
+            border: none;
+            border-radius: 0; /* Sharp corners for luxury look */
+            overflow: hidden;
+            transition: var(--transition);
+            height: 100%;
+            position: relative;
+            group: 'car-group';
+        }
+
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            background: var(--bg-surface-hover);
+        }
+
+        .car-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+        }
+
+        .car-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .car-card:hover .car-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .car-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            color: white;
+            padding: 5px 15px;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-left: 3px solid var(--accent);
+        }
+
+        .card-body-custom {
+            padding: 25px;
+        }
+
+        .car-title {
+            font-size: 18px;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .car-subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .car-price {
+            font-size: 20px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .car-specs {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 0;
+            margin-bottom: 20px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .spec-item i { margin-right: 5px; color: white; }
+
+        .btn-view-details {
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: white;
+            padding: 12px;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 2px;
+            transition: var(--transition);
+        }
+
+        .btn-view-details:hover {
+            background: white;
+            color: black;
+            border-color: white;
+        }
+
+        /* ==================== BRANDS SECTION ==================== */
+        .brand-card {
+            background: var(--bg-surface);
+            padding: 40px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .brand-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .brand-logo {
+            height: 50px;
+            object-fit: contain;
+            filter: grayscale(100%) brightness(200%);
+            transition: var(--transition);
+            margin-bottom: 20px;
+        }
+
+        .brand-card:hover .brand-logo {
+            filter: grayscale(0%) brightness(100%);
+            transform: scale(1.1);
+        }
+
+        .brand-card h5 {
+            font-size: 14px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .brand-stat {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .brand-stat strong {
+            color: white;
+            display: block;
+            font-size: 18px;
+        }
+
+        /* ==================== SERVICES & ABOUT ==================== */
+        .service-box {
+            padding: 40px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            height: 100%;
+            transition: var(--transition);
+        }
+
+        .service-box:hover {
+            border-color: white;
+        }
+
+        .service-icon {
+            font-size: 32px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .service-box h4 { font-size: 16px; margin-bottom: 15px; }
+        .service-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+        /* ==================== INVENTORY FILTERS ==================== */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 10px 25px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            border-color: white;
+            color: white;
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* ==================== CONTACT & MODALS ==================== */
+        .form-control {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: white;
+            padding: 15px;
+            border-radius: 0;
+        }
+
+        .form-control:focus {
+            background: transparent;
+            border-color: white;
+            box-shadow: none;
+            color: white;
+        }
+        
+        .form-control::placeholder { color: #555; }
+
+        /* ==================== UTILITIES ==================== */
+        .page-section { display: none; animation: fadeIn 0.5s ease; }
+        .page-section.active { display: block; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Custom Pagination */
+        .pagination .page-link {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            margin: 0 10px;
+        }
+        .pagination .page-item.active .page-link {
+            color: var(--accent);
+            background: transparent;
+            border-bottom: 1px solid var(--accent);
+            border-radius: 0;
+        }
+        
+        /* Toast Notification */
+        .toast-custom {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            color: black;
+            padding: 15px 25px;
+            border-left: 4px solid var(--accent);
+            transform: translateX(200%);
+            transition: transform 0.3s ease;
+            z-index: 9999;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+        .toast-custom.show { transform: translateX(0); }
+
+        /* Carousel overrides */
+        .carousel-control-prev-icon, 
+        .carousel-control-next-icon {
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top navbar-custom">
+    <div class="container">
+        <a class="navbar-brand" href="#" onclick="showPage('home')">
+            CAR<span>WORLD</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"><i class="bi bi-list" style="font-size: 30px;"></i></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navMenu">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" onclick="showPage('home')">Home</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="showPage('inventory')">Inventory</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="showPage('brands')">Brands</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="showPage('services')">Services</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="showPage('about')">About</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="showPage('contact')">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="navbar-icons d-none d-lg-flex">
+            <i class="bi bi-search" onclick="showToast('Search functionality coming soon!')"></i>
+            <i class="bi bi-person" onclick="showToast('Login portal coming soon!')"></i>
+        </div>
+    </div>
+</nav>
+
+<!-- TOAST NOTIFICATION -->
+<div id="toast" class="toast-custom">Notification Message</div>
+
+<!-- HOME PAGE -->
+<div id="home" class="page-section active">
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h4>Exclusive Collection 2024</h4>
+                <h1>Redefining <br>Luxury & Performance</h1>
+                <p>Discover the finest selection of premium automobiles curated for the discerning enthusiast.</p>
+                <div class="d-flex gap-3">
+                    <button class="btn-primary-custom" onclick="showPage('inventory')">View Inventory</button>
+                    <button class="btn-luxury" onclick="showPage('contact')">Book Appointment</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="container py-5">
+        <div class="row text-center g-4">
+            <div class="col-6 col-md-3">
+                <div class="p-4 border border-dark">
+                    <h2 class="display-4 fw-bold">50+</h2>
+                    <p class="text-uppercase ls-1" style="font-size: 12px; color: var(--text-muted);">Premium Cars</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-4 border border-dark">
+                    <h2 class="display-4 fw-bold">15+</h2>
+                    <p class="text-uppercase ls-1" style="font-size: 12px; color: var(--text-muted);">Luxury Brands</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-4 border border-dark">
+                    <h2 class="display-4 fw-bold">2k+</h2>
+                    <p class="text-uppercase ls-1" style="font-size: 12px; color: var(--text-muted);">Happy Clients</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-4 border border-dark">
+                    <h2 class="display-4 fw-bold">100%</h2>
+                    <p class="text-uppercase ls-1" style="font-size: 12px; color: var(--text-muted);">Verified Quality</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FEATURED -->
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Featured Arrivals</h2>
+            <p class="section-subtitle">Handpicked for excellence</p>
+        </div>
+        <div class="row g-4" id="featuredCarsGrid"></div>
+    </div>
+    
+    <!-- CTA -->
+    <section class="py-5 mt-5" style="background: var(--bg-surface); border-top: 1px solid var(--border-color);">
+        <div class="container text-center">
+            <h2 class="mb-3">Looking for something specific?</h2>
+            <p class="text-muted mb-4">Our specialists can help you find your dream car.</p>
+            <button class="btn-luxury" onclick="showPage('contact')">Contact Specialists</button>
+        </div>
+    </section>
+</div>
+
+<!-- INVENTORY PAGE -->
+<div id="inventory" class="page-section">
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Current Inventory</h2>
+            <p class="section-subtitle">Explore our complete collection</p>
+        </div>
+
+        <!-- Filters -->
+        <div class="filter-container" id="filterButtons">
+            <button class="filter-btn active" onclick="filterCars('all')">All Vehicles</button>
+            <button class="filter-btn" onclick="filterCars('sports')">Sports</button>
+            <button class="filter-btn" onclick="filterCars('luxury')">Luxury</button>
+            <button class="filter-btn" onclick="filterCars('suv')">SUV</button>
+        </div>
+
+        <div class="row g-4" id="inventoryGrid"></div>
+
+        <!-- Pagination -->
+        <div class="d-flex justify-content-center mt-5">
+            <nav>
+                <ul class="pagination" id="inventoryPagination">
+                    <li class="page-item"><button class="page-link" onclick="changePage('prev')"><i class="bi bi-arrow-left"></i></button></li>
+                    <li class="page-item"><button class="page-link" onclick="changePage('next')"><i class="bi bi-arrow-right"></i></button></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<!-- BRANDS PAGE -->
+<div id="brands" class="page-section">
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Our Partners</h2>
+            <p class="section-subtitle">Representing the world's finest manufacturers</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Simulated Brand Grid (Using text/logos as placeholders for local images) -->
+            <div class="col-6 col-md-3">
+                <div class="brand-card">
+                    <i class="bi bi-gem display-4 mb-3 text-muted"></i>
+                    <h5>Rolls Royce</h5>
+                    <div class="brand-stat"><strong>5</strong>Models Available</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="brand-card">
+                    <i class="bi bi-suit-heart display-4 mb-3 text-muted"></i>
+                    <h5>Ferrari</h5>
+                    <div class="brand-stat"><strong>12</strong>Models Available</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="brand-card">
+                    <i class="bi bi-lightning display-4 mb-3 text-muted"></i>
+                    <h5>Lamborghini</h5>
+                    <div class="brand-stat"><strong>6</strong>Models Available</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="brand-card">
+                    <i class="bi bi-circle-half display-4 mb-3 text-muted"></i>
+                    <h5>Bentley</h5>
+                    <div class="brand-stat"><strong>7</strong>Models Available</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="brand-card">
+                    <i class="bi bi-star display-4 mb-3 text-muted"></i>
+                    <h5>Mercedes-AMG</h5>
+                    <div class="brand-stat"><strong>25</strong>Models Available</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="brand-card">
+                    <i class="bi bi-box-seam display-4 mb-3 text-muted"></i>
+                    <h5>Porsche</h5>
+                    <div class="brand-stat"><strong>15</strong>Models Available</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="brand-card">
+                    <i class="bi bi-hdd-network display-4 mb-3 text-muted"></i>
+                    <h5>Audi</h5>
+                    <div class="brand-stat"><strong>20</strong>Models Available</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="brand-card">
+                    <i class="bi bi-geo-alt display-4 mb-3 text-muted"></i>
+                    <h5>Range Rover</h5>
+                    <div class="brand-stat"><strong>10</strong>Models Available</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SERVICES PAGE -->
+<div id="services" class="page-section">
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Premium Services</h2>
+            <p class="section-subtitle">Comprehensive care for your vehicle</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="service-box">
+                    <i class="bi bi-shield-check service-icon"></i>
+                    <h4>Certified Pre-Owned</h4>
+                    <p>Rigorous 150-point inspection ensuring top quality for every vehicle.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-box">
+                    <i class="bi bi-currency-dollar service-icon"></i>
+                    <h4>Financing Solutions</h4>
+                    <p>Tailored financial plans and leasing options for high-net-worth clients.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-box">
+                    <i class="bi bi-tools service-icon"></i>
+                    <h4>Service & Maintenance</h5>
+                    <p>State-of-the-art service center with factory-trained technicians.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-box">
+                    <i class="bi bi-arrow-repeat service-icon"></i>
+                    <h4>Trade-In & Exchange</h4>
+                    <p>Fair market value evaluation for your current vehicle towards an upgrade.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-box">
+                    <i class="bi bi-geo-fill service-icon"></i>
+                    <h5>Doorstep Delivery</h5>
+                    <p>Seamless delivery experience at your preferred location.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-box">
+                    <i class="bi bi-palette service-icon"></i>
+                    <h5>Customization</h5>
+                    <p>Personalization wraps, accessories, and modifications.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ABOUT PAGE -->
+<div id="about" class="page-section">
+    <div class="container py-5">
+        <div class="row align-items-center g-5">
+            <div class="col-md-6">
+                <h2 class="section-title">Who We Are</h2>
+                <p class="text-muted mb-4">CarWorld is the premier destination for luxury and performance vehicles. Founded on a passion for automotive excellence, we provide a curated selection of the world's most desirable cars.</p>
+                <p class="text-muted">Our philosophy is simple: deliver an unparalleled ownership experience. From the moment you walk into our showroom to the day you upgrade, our dedicated team is here to ensure your journey is exceptional.</p>
+                <div class="mt-4">
+                    <div class="d-flex mb-3">
+                        <i class="bi bi-check2-circle text-success me-3 mt-1"></i>
+                        <div>
+                            <h6 class="text-white mb-1">Transparency</h6>
+                            <p class="small text-muted">No hidden fees. Complete history on every car.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <i class="bi bi-check2-circle text-success me-3 mt-1"></i>
+                        <div>
+                            <h6 class="text-white mb-1">Exclusivity</h6>
+                            <p class="small text-muted">Access to limited edition and rare models.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="https://picsum.photos/seed/showroom/600/400" class="img-fluid w-100 border border-dark" alt="Showroom">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CONTACT PAGE -->
+<div id="contact" class="page-section">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-6">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="text-muted mb-5">Schedule a viewing or inquire about a specific vehicle.</p>
+                
+                <div class="mb-4">
+                    <h6 class="text-white mb-2">Showroom</h6>
+                    <p class="text-muted">123 Luxury Avenue, Auto District<br>Metropolis, Country</p>
+                </div>
+                
+                <div class="mb-4">
+                    <h6 class="text-white mb-2">Contact</h6>
+                    <p class="text-muted mb-1"><i class="bi bi-envelope me-2"></i> sales@carworld.com</p>
+                    <p class="text-muted"><i class="bi bi-telephone me-2"></i> +1 (555) 123-4567</p>
+                </div>
+
+                <div class="mb-4">
+                    <h6 class="text-white mb-2">Hours</h6>
+                    <p class="text-muted">Mon - Sat: 9:00 AM - 8:00 PM<br>Sunday: By Appointment</p>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <form id="contactForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="text-uppercase small text-muted">Name</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="text-uppercase small text-muted">Phone</label>
+                            <input type="tel" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-uppercase small text-muted">Email</label>
+                        <input type="email" class="form-control" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="text-uppercase small text-muted">Interest</label>
+                        <select class="form-control">
+                            <option>General Inquiry</option>
+                            <option>Schedule Test Drive</option>
+                            <option>Sell My Car</option>
+                            <option>Financing</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="text-uppercase small text-muted">Message</label>
+                        <textarea class="form-control" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary-custom w-100">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="carModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark text-white border-secondary">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title text-uppercase ls-2" id="carTitle"></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="carBody"></div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="py-5 mt-5" style="background: #000; border-top: 1px solid var(--border-color);">
+    <div class="container text-center">
+        <h4 class="mb-3 text-white">CAR<span style="color: var(--accent);">WORLD</span></h4>
+        <div class="d-flex justify-content-center gap-3 mb-4">
+            <a href="#" class="text-muted small">Privacy Policy</a>
+            <a href="#" class="text-muted small">Terms of Service</a>
+        </div>
+        <p class="text-muted small">&copy; 2024 CarWorld Premium Motors. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- APP LOGIC -->
+<script>
+    // ==================== DATA (Using Placeholders for missing local images) ====================
+    // Helper to generate consistent car images based on ID
+    const getCarImage = (id, index = 0) => `https://picsum.photos/seed/car${id}_${index}/800/450`;
+
+    const carsData = [
+        {
+            id: 1,
+            name: "Bentley Continental GT",
+            subtitle: "British Luxury Grand Tourer",
+            category: "sports",
+            badge: "Sports",
+            power: "530 HP",
+            acceleration: "0-100: 6.9s",
+            price: "$420,000",
+            year: "2023",
+            status: "In Stock",
+            featured: true,
+            images: [getCarImage(1), getCarImage(1, 1), getCarImage(1, 2)],
+            engine: "6.0L W12",
+            description: "The Continental GT represents the perfect blend of luxury and performance."
+        },
+        {
+            id: 2,
+            name: "Mercedes AMG G-63",
+            subtitle: "Ultimate Luxury Off-Roader",
+            category: "suv",
+            badge: "SUV",
+            power: "577 HP",
+            acceleration: "0-100: 4.5s",
+            price: "$350,000",
+            year: "2024",
+            status: "Available",
+            featured: true,
+            images: [getCarImage(2), getCarImage(2, 1)],
+            engine: "4.0L V8 Biturbo",
+            description: "Iconic off-road capability meets ultimate luxury in this legendary SUV."
+        },
+        {
+            id: 3,
+            name: "Maybach S-680",
+            subtitle: "Pinnacle of Luxury",
+            category: "luxury",
+            badge: "Ultra Luxury",
+            power: "621 HP",
+            acceleration: "V12 Power",
+            price: "$450,000",
+            year: "2024",
+            status: "Exclusive",
+            featured: true,
+            images: [getCarImage(3), getCarImage(3, 1)],
+            engine: "6.0L V12",
+            description: "The ultimate expression of automotive luxury and refinement."
+        },
+        {
+            id: 4,
+            name: "Range Rover SV",
+            subtitle: "British Luxury SUV",
+            category: "suv",
+            badge: "SUV",
+            power: "590 HP",
+            acceleration: "0-100: 4.5s",
+            price: "$280,000",
+            year: "2023",
+            status: "In Stock",
+            featured: false,
+            images: [getCarImage(4)],
+            engine: "5.0L V8 Supercharged",
+            description: "Combines legendary off-road capability with refined luxury."
+        },
+        {
+            id: 5,
+            name: "Porsche 911 Turbo S",
+            subtitle: "German Precision",
+            category: "sports",
+            badge: "Sports",
+            power: "640 HP",
+            acceleration: "0-100: 2.6s",
+            price: "$400,000",
+            year: "2024",
+            status: "Premium",
+            featured: false,
+            images: [getCarImage(5), getCarImage(5, 1)],
+            engine: "3.8L Twin-Turbo Flat-6",
+            description: "The benchmark for high-performance sports cars."
+        },
+        {
+            id: 6,
+            name: "Ferrari F8 Tributo",
+            subtitle: "Italian Supercar",
+            category: "sports",
+            badge: "Supercar",
+            power: "710 HP",
+            acceleration: "0-100: 2.9s",
+            price: "$550,000",
+            year: "2024",
+            status: "Track Ready",
+            featured: false,
+            images: [getCarImage(6)],
+            engine: "3.9L Twin-Turbo V8",
+            description: "Pure Italian passion combined with cutting-edge technology."
+        },
+        {
+            id: 7,
+            name: "Rolls Royce Phantom",
+            subtitle: "The Best Car in the World",
+            category: "luxury",
+            badge: "Luxury",
+            power: "563 HP",
+            acceleration: "Handcrafted",
+            price: "$950,000",
+            year: "2024",
+            status: "Iconic",
+            featured: false,
+            images: [getCarImage(7)],
+            engine: "6.75L V12",
+            description: "The ultimate symbol of automotive excellence and prestige."
+        },
+        {
+            id: 8,
+            name: "BMW X7",
+            subtitle: "Flagship Luxury SUV",
+            category: "suv",
+            badge: "SUV",
+            power: "530 HP",
+            acceleration: "0-100: 4.7s",
+            price: "$180,000",
+            year: "2024",
+            status: "In Stock",
+            featured: false,
+            images: [getCarImage(8)],
+            engine: "4.4L Twin-Turbo V8",
+            description: "BMW's largest and most luxurious SUV offering."
+        },
+        {
+            id: 9,
+            name: "Porsche 918 Spyder",
+            subtitle: "Hybrid Hypercar",
+            category: "sports",
+            badge: "Hypercar",
+            power: "887 HP",
+            acceleration: "0-100: 2.6s",
+            price: "Sold Out",
+            year: "2025",
+            status: "Sold Out",
+            featured: false,
+            images: [getCarImage(9), getCarImage(9, 1)],
+            engine: "4.6L V8 + Electric",
+            description: "Revolutionary hybrid hypercar with incredible performance."
+        }
+    ];
+
+    // ==================== HELPER FUNCTIONS ====================
+
+    function generateCarousel(carId, images) {
+        if (images.length === 1) {
+            return `<img src="${images[0]}" class="card-img-top" alt="Car Image">`;
+        }
+
+        const carouselId = `carousel${carId}`;
+        let carouselHTML = `
+            <div id="${carouselId}" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+        `;
+
+        images.forEach((img, index) => {
+            carouselHTML += `
+                <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                    <img src="${img}" class="d-block w-100" style="object-fit: cover;" alt="Car Image">
+                </div>
+            `;
+        });
+
+        carouselHTML += `
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        `;
+
+        return carouselHTML;
+    }
+
+    function generateCarCard(car) {
+        return `
+            <div class="col-md-4 car-item fade-in" data-category="${car.category}">
+                <div class="car-card shadow-sm">
+                    <div class="car-img-wrapper">
+                        <span class="car-badge">${car.badge}</span>
+                        ${generateCarousel(car.id, car.images)}
+                    </div>
+                    <div class="card-body-custom">
+                        <h5 class="car-title">${car.name}</h5>
+                        <p class="car-subtitle">${car.subtitle}</p>
+                        
+                        <div class="car-specs">
+                            <div class="spec-item"><i class="bi bi-speedometer2"></i> ${car.power}</div>
+                            <div class="spec-item"><i class="bi bi-lightning-charge"></i> ${car.acceleration}</div>
+                            <div class="spec-item"><i class="bi bi-calendar4"></i> ${car.year}</div>
+                        </div>
+                        
+                        <span class="car-price">${car.price}</span>
+                        
+                        <button class="btn-view-details" onclick="openModal(${car.id})">View Details</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // ==================== RENDER LOGIC ====================
+
+    function renderFeaturedCars() {
+        const featuredGrid = document.getElementById('featuredCarsGrid');
+        if (!featuredGrid) return;
+        const featuredCars = carsData.filter(car => car.featured);
+        featuredGrid.innerHTML = featuredCars.map(car => generateCarCard(car)).join('');
+    }
+
+    function renderInventoryCars() {
+        const inventoryGrid = document.getElementById('inventoryGrid');
+        if (!inventoryGrid) return;
+        inventoryGrid.innerHTML = carsData.map(car => generateCarCard(car)).join('');
+    }
+
+    // ==================== MODAL LOGIC ====================
+
+    function openModal(carId) {
+        const car = carsData.find(c => c.id === carId);
+        if (!car) return;
+
+        document.getElementById("carTitle").innerText = car.name;
+        
+        const modalBody = document.getElementById("carBody");
+        modalBody.innerHTML = `
+            <div class="mb-3">
+                ${generateCarousel('modal' + car.id, car.images)}
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Engine:</strong> ${car.engine}</p>
+                    <p><strong>Power:</strong> ${car.power}</p>
+                    <p><strong>0-100 km/h:</strong> ${car.acceleration}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Price:</strong> <span class="text-warning">${car.price}</span></p>
+                    <p><strong>Status:</strong> ${car.status}</p>
+                    <p><strong>Year:</strong> ${car.year}</p>
+                </div>
+                <div class="col-12 mt-3">
+                    <p class="text-muted">${car.description}</p>
+                    <button class="btn-primary-custom w-100" onclick="closeModalAndNotify()">Request Test Drive</button>
+                </div>
+            </div>
+        `;
+
+        const modal = new bootstrap.Modal(document.getElementById("carModal"));
+        modal.show();
+    }
+
+    function closeModalAndNotify() {
+        const modalEl = document.getElementById('carModal');
+        const modal = bootstrap.Modal.getInstance(modalEl);
+        modal.hide();
+        showToast("Test drive request sent! We will contact you shortly.");
+    }
+
+    // ==================== NAVIGATION & UI ====================
+
+    function showPage(pageName) {
+        // Hide all sections
+        document.querySelectorAll('.page-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        
+        // Show selected
+        const targetPage = document.getElementById(pageName);
+        if (targetPage) {
+            targetPage.classList.add('active');
+            window.scrollTo(0,0);
+        }
+        
+        // Nav state
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
+        
+        // Find the link that was clicked (approximate match)
+        const clickedLink = Array.from(document.querySelectorAll('.nav-link')).find(l => l.innerText.toLowerCase().includes(pageName));
+        if(clickedLink) clickedLink.classList.add('active');
+
+        // Close mobile menu
+        const navCollapse = document.getElementById('navMenu');
+        if (navCollapse && navCollapse.classList.contains('show')) {
+            const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
+            if (bsCollapse) bsCollapse.hide();
+        }
+    }
+
+    // Toast System
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.innerText = message;
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
+    // ==================== FILTERING & PAGINATION ====================
+
+    function filterCars(category) {
+        const items = document.querySelectorAll('.car-item');
+        const buttons = document.querySelectorAll('.filter-btn');
+        
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        
+        items.forEach(item => {
+            if (category === 'all' || item.dataset.category === category) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+
+        currentPage = 1;
+        setupPagination();
+    }
+
+    let currentPage = 1;
+    const itemsPerPage = 6; // Increased for modern grid look
+
+    function setupPagination() {
+        const grid = document.getElementById('inventoryGrid');
+        if (!grid) return;
+
+        const allItems = Array.from(grid.querySelectorAll('.car-item'))
+            .filter(item => item.style.display !== 'none');
+
+        const totalItems = allItems.length;
+        const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
+
+        // Adjust current page if out of bounds
+        if (currentPage > totalPages) currentPage = totalPages;
+
+        allItems.forEach((item, index) => {
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            if (index >= start && index < end) {
+                item.classList.remove('d-none');
+                item.classList.add('d-block'); // Ensure block display
+            } else {
+                item.classList.add('d-none');
+                item.classList.remove('d-block');
+            }
+        });
+
+        // Hide pagination if only one page
+        const pagination = document.getElementById('inventoryPagination');
+        if (pagination) {
+            if(totalItems <= itemsPerPage) {
+                pagination.style.display = 'none';
+            } else {
+                pagination.style.display = 'block';
+            }
+        }
+    }
+
+    function changePage(direction) {
+        const grid = document.getElementById('inventoryGrid');
+        if (!grid) return;
+
+        const allItems = Array.from(grid.querySelectorAll('.car-item'))
+            .filter(item => item.style.display !== 'none' && item.style.display !== '');
+            
+        // Filter out hidden items properly
+        const visibleItems = allItems.filter(i => !i.classList.contains('d-none'));
+        
+        // Recalculate total pages based on currently filtered items
+        const totalItems = visibleItems.length; // Use actual visible items count logic in filterCars
+        
+        // We need a way to know total items even hidden ones for calculation
+        // Simplified: Just re-query based on data-attributes logic
+        const allNodes = grid.querySelectorAll('.car-item');
+        const activeNodes = Array.from(allNodes).filter(node => node.style.display !== 'none');
+        const totalActive = activeNodes.length;
+        const totalPages = Math.max(1, Math.ceil(totalActive / itemsPerPage));
+
+        if (direction === 'prev' && currentPage > 1) {
+            currentPage--;
+        } else if (direction === 'next' && currentPage < totalPages) {
+            currentPage++;
+        }
+        setupPagination();
+    }
+
+    // ==================== SCROLL EFFECTS ====================
+
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar-custom');
+        if (navbar) {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+    });
+
+    // ==================== FORM HANDLING ====================
+
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            showToast("Message sent successfully.");
+            this.reset();
+        });
+    }
+
+    // ==================== INITIALIZATION ====================
+
+    window.addEventListener('load', function() {
+        renderFeaturedCars();
+        renderInventoryCars();
+        setupPagination();
+    });
+
+</script>
+</body>
+</html>
