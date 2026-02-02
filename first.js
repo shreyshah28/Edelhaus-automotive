@@ -620,3 +620,36 @@ function showComingSoon(brandName) {
     // 3. Show the Modal
     new bootstrap.Modal(document.getElementById("carModal")).show();
 }
+// ==================== CLIENT REGISTRATION LOGIC (No Alert Box) ====================
+const clientForm = document.getElementById('loginForm');
+if (clientForm) {
+    clientForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Stop the page from reloading
+        
+        // 1. Get the Name
+        const nameInput = this.querySelector('input[type="text"]');
+        const clientName = nameInput ? nameInput.value : "Valued Client";
+
+        // 2. Get the Modal Body to replace content
+        const modalBody = document.querySelector('#loginModal .modal-body');
+        
+        // 3. Replace the Form with a Success Message (Design)
+        modalBody.innerHTML = `
+            <div class="text-center py-5">
+                <div class="mb-4">
+                    <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                </div>
+                <h3 class="text-white fw-bold mb-3">Registration Successful!</h3>
+                <p class="text-muted">
+                    Welcome to Edelhaus, <span class="text-white fw-bold">${clientName}</span>.
+                </p>
+                <p class="text-muted small">
+                    Our concierge team has sent a confirmation email to your inbox.
+                </p>
+                <button class="btn btn-outline-light mt-4 px-4" data-bs-dismiss="modal">
+                    Close Window
+                </button>
+            </div>
+        `;
+    });
+}

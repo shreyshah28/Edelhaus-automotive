@@ -514,18 +514,53 @@
 
 <div id="about" class="page-section">
     <div class="container my-5">
-        <div class="row align-items-center g-5">
+        <div class="row align-items-center g-5 reveal">
             <div class="col-md-6">
-                <h2 class="mb-4">About CarWorld</h2>
-                <p class="text-muted">CarWorld is a premium luxury car dealership dedicated to offering the finest selection of high-performance and ultra-luxury vehicles.</p>
-                <ul class="list-unstyled mt-3">
-                    <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Handpicked inventory</li>
-                    <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Transparent deals</li>
-                    <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Dedicated support</li>
-                </ul>
+                <h5 class="sub-heading">THE LEGACY</h5>
+                <h2 class="main-heading">REDEFINING AUTOMOTIVE EXCELLENCE</h2>
+                <p class="description-text">
+                    Established in 2026 in Ahmedabad, Edelhaus Automotive has quickly become the pinnacle of luxury car showrooms in India. 
+                    We don't just sell cars; we curate the world's most exclusive automotive masterpieces.
+                </p>
+                <div class="row g-4 mt-2">
+                    <div class="col-6">
+                        <h4 class="text-white mb-0">2,000+</h4>
+                        <p class="small text-muted">VEHICLES DELIVERED</p>
+                    </div>
+                    <div class="col-6">
+                        <h4 class="text-white mb-0">15+</h4>
+                        <p class="small text-muted">GLOBAL BRANDS</p>
+                    </div>
+                </div>
             </div>
             <div class="col-md-6">
-                <img src="https://images.pexels.com/photos/97079/pexels-photo-97079.jpeg" class="img-fluid rounded shadow" alt="Showroom">
+                <div class="image-wrapper">
+                    <img src="https://images.pexels.com/photos/97079/pexels-photo-97079.jpeg" class="img-fluid rounded shadow-lg blended-image" alt="Showroom Interior">
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5 g-4 reveal">
+            <div class="col-lg-4">
+                <div class="brand-card h-100 p-4">
+                    <i class="bi bi-globe-americas display-5 text-primary mb-3"></i>
+                    <h5>Global Sourcing</h5>
+                    <p class="text-muted small">We utilize a vast global network to source rare hypercars and limited-edition models directly from Japan, the UK, and Dubai.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="brand-card h-100 p-4">
+                    <i class="bi bi-shield-lock display-5 text-primary mb-3"></i>
+                    <h5>Bespoke Security</h5>
+                    <p class="text-muted small">Every vehicle undergoes a rigorous 150-point Edelhaus Certification, ensuring that performance and luxury are never compromised.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="brand-card h-100 p-4">
+                    <i class="bi bi-person-check display-5 text-primary mb-3"></i>
+                    <h5>Client Experience</h5>
+                    <p class="text-muted small">Our dedicated consultants provide a personalized journey, from private showroom viewings to bespoke door-step delivery across Gujarat.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -536,21 +571,39 @@
         <h2 class="text-center mb-4">Get in Touch</h2>
         <div class="row g-4">
             <div class="col-md-6">
-                <form id="contactForm">
-                    <div class="mb-3">
-                        <label class="form-label">Full Name</label>
-                        <input type="text" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Email Address</label>
-                        <input type="email" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Message</label>
-                        <textarea class="form-control" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-gradient px-4">Submit</button>
-                </form>
+                <form id="contactForm" class="needs-validation" novalidate>
+    <div class="row g-3">
+        <div class="col-md-6 mb-3">
+            <label class="form-label small text-muted">FULL NAME</label>
+            <input type="text" class="form-control" placeholder="Enter your name" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label small text-muted">PHONE NUMBER</label>
+            <input type="tel" class="form-control" placeholder="+91 XXXXX XXXXX" required pattern="[0-9]{10}">
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label small text-muted">EMAIL ADDRESS</label>
+        <input type="email" class="form-control" placeholder="name@example.com" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label small text-muted">INTERESTED IN</label>
+        <select class="form-select" id="interestSelect">
+            <option selected disabled>Select a Category</option>
+            <option value="viewing">Schedule a Private Viewing</option>
+            <option value="testdrive">Book a Test Drive</option>
+            <option value="valuation">Vehicle Valuation (Sell My Car)</option>
+            <option value="finance">Bespoke Finance Options</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label small text-muted">MESSAGE</label>
+        <textarea class="form-control" rows="4" placeholder="How can our consultants assist you today?" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-gradient px-5 py-2">
+        SEND ENQUIRY
+    </button>
+</form>
             </div>
             <div class="col-md-6">
                 <h5>Showroom Address</h5>
@@ -634,43 +687,58 @@
 <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="background-color: #121212; border: 1px solid #333; color: white;">
-            
             <div class="modal-header border-secondary">
-                <h5 class="modal-title fw-bold">
-                    <i class="bi bi-person-badge me-2" style="color: #3498db;"></i>
-                    Client Access
-                </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active bg-transparent text-white" id="tab-login" data-bs-toggle="pill" data-bs-target="#content-login">LOG IN</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link bg-transparent text-white" id="tab-signup" data-bs-toggle="pill" data-bs-target="#content-signup">SIGN UP</button>
+                    </li>
+                </ul>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
 
             <div class="modal-body p-4">
-                <form id="loginForm">
-                    <div class="mb-3">
-                        <label class="form-label text-muted small">EMAIL ADDRESS</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-dark border-secondary text-secondary"><i class="bi bi-envelope"></i></span>
-                            <input type="email" class="form-control bg-dark border-secondary text-white" placeholder="name@example.com">
-                        </div>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="content-login">
+                        <form id="authLoginForm" novalidate>
+                            <div class="mb-3">
+                                <label class="text-muted small mb-2">EMAIL ADDRESS</label>
+                                <input type="email" class="form-control" id="loginEmail" required>
+                                <div class="invalid-feedback">Please enter a valid email.</div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="text-muted small mb-2">PASSWORD</label>
+                                <input type="password" class="form-control" id="loginPass" required>
+                            </div>
+                            <button type="submit" class="btn btn-gradient w-100 py-2 fw-bold">ENTER SHOWROOM</button>
+                        </form>
                     </div>
 
-                    <div class="mb-4">
-                        <label class="form-label text-muted small">PASSWORD</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-dark border-secondary text-secondary"><i class="bi bi-key"></i></span>
-                            <input type="password" class="form-control bg-dark border-secondary text-white" placeholder="••••••••">
-                        </div>
+                    <div class="tab-pane fade" id="content-signup">
+                        <form id="authSignupForm" novalidate>
+                            <div class="mb-3">
+                                <label class="text-muted small mb-2">FULL NAME</label>
+                                <input type="text" class="form-control" id="regName" required minlength="3">
+                            </div>
+                            <div class="mb-3">
+                                <label class="text-muted small mb-2">PHONE NUMBER</label>
+                                <input type="tel" class="form-control" id="regPhone" required pattern="[0-9]{10}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="text-muted small mb-2">EMAIL ADDRESS</label>
+                                <input type="email" class="form-control" id="regEmail" required>
+                            </div>
+                            <div class="mb-4">
+                                <label class="text-muted small mb-2">CREATE PASSWORD</label>
+                                <input type="password" class="form-control" id="regPass" required minlength="6">
+                            </div>
+                            <button type="submit" class="btn btn-gradient w-100 py-2 fw-bold">CREATE ACCOUNT</button>
+                        </form>
                     </div>
-
-                    <button type="submit" class="btn btn-gradient w-100 py-2 fw-bold">
-                        LOG IN
-                    </button>
-                    
-                    <div class="text-center mt-3">
-                        <a href="#" class="small text-muted text-decoration-none">Forgot Password?</a>
-                    </div>
-                </form>
+                </div>
             </div>
-            
         </div>
     </div>
 </div>
