@@ -972,3 +972,44 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 .modal-content {
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
+/* ==================== NEW LAUNCHES CAROUSEL ==================== */
+
+/* 1. Wrapper to crop images nicely */
+.carousel-img-wrapper {
+    position: relative;
+    height: 600px; /* Fixed height for consistency */
+}
+
+/* 2. The Image itself */
+.carousel-img-wrapper img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; /* Ensures image fills the area without stretching */
+    object-position: center;
+}
+
+/* 3. Dark Overlay (Gradient) so text pops */
+.carousel-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Fade from black (bottom) to transparent (top) */
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+}
+
+/* 4. Text Position */
+.carousel-caption {
+    bottom: 50px;
+    left: 80px;
+    right: auto; /* Aligns text to left, not center */
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+}
+
+/* 5. Indicators (Lines at bottom) */
+.carousel-indicators button {
+    width: 40px !important;
+    height: 4px !important;
+    background-color: #3498db !important; /* Blue lines */
+}

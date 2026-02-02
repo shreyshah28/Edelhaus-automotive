@@ -118,6 +118,71 @@
     </section>
 
     <div class="container my-5 reveal">
+        <div class="text-center mb-4">
+            <h5 class="text-primary text-uppercase tracking-wide" style="letter-spacing: 2px; font-size: 0.9rem;">Just Arrived</h5>
+            <h2 class="display-5 fw-bold text-white">New Launches</h2>
+        </div>
+
+        <div id="newLaunchesCarousel" class="carousel slide carousel-fade shadow-lg" data-bs-ride="carousel">
+            
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#newLaunchesCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#newLaunchesCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#newLaunchesCarousel" data-bs-slide-to="2"></button>
+            </div>
+
+            <div class="carousel-inner rounded-4 overflow-hidden">
+                
+                <div class="carousel-item active" data-bs-interval="4000">
+                    <div class="carousel-img-wrapper">
+                        <img src="Porsche/porsche_918_spyder/porsche_918_spyder3.jpg" class="d-block w-120" alt="Porsche 918">
+                        <div class="carousel-overlay"></div>
+                    </div>
+                    <div class="carousel-caption d-none d-md-block text-start">
+                        <span class="badge bg-primary mb-2">HYPERCAR</span>
+                        <h1 class="display-4 fw-bold">Porsche 918 Spyder</h1>
+                        <p class="lead">The future of performance. 887 HP Hybrid Powertrain.</p>
+                        <button class="btn btn-outline-light mt-3" onclick="showPage('inventory')">View Specs</button>
+                    </div>
+                </div>
+
+                <div class="carousel-item" data-bs-interval="4000">
+                    <div class="carousel-img-wrapper">
+                        <img src="Porsche/porche 991.2/911.2_7.jpg" class="d-block w-100" alt="Prosche 991.2">
+                        <div class="carousel-overlay"></div>
+                    </div>
+                    <div class="carousel-caption d-none d-md-block text-start">
+                        <span class="badge bg-danger mb-2">TRACK READY</span>
+                        <h1 class="display-4 fw-bold">Porsche 991.2 </h1>
+                        <p class="lead">A tribute to the most powerful V8 in Porsche history.</p>
+                        <button class="btn btn-outline-light mt-3" onclick="showPage('inventory')">View Specs</button>
+                    </div>
+                </div>
+
+                <div class="carousel-item" data-bs-interval="4000">
+                    <div class="carousel-img-wrapper">
+                        <img src="Mclearn/mclaren-artura-spider3.jpg" class="d-block w-100" alt="Mclearn artura">
+                        <div class="carousel-overlay"></div>
+                    </div>
+                    <div class="carousel-caption d-none d-md-block text-start">
+                        <span class="badge bg-dark border border-secondary mb-2">ULTRA LUXURY</span>
+                        <h1 class="display-4 fw-bold">Mclearn artura</h1>
+                        <p class="lead">The pinnacle of automotive luxury and silence.</p>
+                        <button class="btn btn-outline-light mt-3" onclick="showPage('inventory')">View Specs</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#newLaunchesCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bg-dark rounded-circle p-3"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#newLaunchesCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon bg-dark rounded-circle p-3"></span>
+            </button>
+        </div>
+    </div>
+    <div class="container my-5 reveal">
         <div class="row g-4 text-center">
             <div class="col-md-3">
                 <div class="stat-card">
@@ -316,7 +381,7 @@
                     <div class="brand-card" onclick="showComingSoon('Pagani')">
                       <div class="brand-logo-wrapper">
                          <img src="LOGOS/Pagani.jpg" alt="Pagani">
-                     </div>
+                      </div>
                     <h5>Pagani</h5>
                     <p>"Art and Science"</p>
                     </div>
@@ -325,7 +390,7 @@
                     <div class="brand-card" onclick="showComingSoon('Koenigsegg')">
                       <div class="brand-logo-wrapper">
                          <img src="LOGOS/Koenigsegg.jpg" alt="Koenigsegg">
-                     </div>
+                      </div>
                     <h5>Koenigsegg</h5>
                     <p>"Spped and class "</p>
                     </div>
@@ -351,101 +416,96 @@
                     <h4>Edelhaus Certified</h4>
                     <p>Every vehicle undergoes a rigorous 150-point inspection.</p>
                 </div>
-                </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="service-card">
-                    <div class="service-icon-box">
-                        <i class="bi bi-patch-check"></i>
-                    </div>
-                    <h4>Edelhaus Certified</h4>
-                    <p>Every vehicle undergoes a rigorous 150-point inspection.</p>
-                </div>
-                </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="service-card">
-                    <div class="service-icon-box">
-                        <i class="bi bi-patch-check"></i>
-                    </div>
-                    <h4>Edelhaus Certified</h4>
-                    <p>Every vehicle undergoes a rigorous 150-point inspection.</p>
-                </div>
-                </div>        
             </div>
-            <div class="row justify-content-center mt-5 pt-4 reveal">
-    <div class="col-lg-8">
-        <div class="service-booking-card">
-            <h3 class="text-center mb-4"><i class="bi bi-calendar-check me-2 text-primary"></i>Schedule an Appointment</h3>
-            <p class="text-center text-muted mb-4">Fill out the form below and our service advisor will contact you shortly.</p>
-            
-            <form id="serviceForm">
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" placeholder="Your Name" required>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <i class="bi bi-bank"></i>
                     </div>
-                    <div class="col-md-6">
-                        <input type="tel" class="form-control" placeholder="Phone Number" required>
-                    </div>
-
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" placeholder="Car Model (e.g. Porsche 911)" required>
-                    </div>
-                    <div class="col-md-6">
-                        <select class="form-select">
-                            <option selected>Select Service Type</option>
-                            <option value="1">Routine Maintenance</option>
-                            <option value="2">Detailing & Ceramic Coating</option>
-                            <option value="3">Repair / Diagnostics</option>
-                            <option value="4">Consignment (Sell my Car)</option>
-                        </select>
-                    </div>
-
-                    <div class="col-12">
-                        <input type="date" class="form-control text-muted">
-                    </div>
-                    <div class="col-12">
-                        <textarea class="form-control" rows="3" placeholder="Any specific issues or requests?"></textarea>
-                    </div>
-
-                    <div class="col-12 text-center mt-3">
-                        <button type="submit" class="btn btn-gradient px-5 py-2">
-                            Request Appointment
-                        </button>
-                    </div>
+                    <h4>Bespoke Finance</h4>
+                    <p>Tailored financial solutions, flexible EMI options.</p>
                 </div>
-            </form>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <i class="bi bi-globe-americas"></i>
+                    </div>
+                    <h4>Global Sourcing</h4>
+                    <p>We import exclusive vehicles from Japan, UK, and Dubai.</p>
+                </div>
+            </div>
+             <div class="col-lg-4 col-md-6">
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <i class="bi bi-stars"></i>
+                    </div>
+                    <h4>Detailing & Protection</h4>
+                    <p>In-house ceramic coating and PPF installation.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <i class="bi bi-wrench-adjustable"></i>
+                    </div>
+                    <h4>Performance Tuning</h4>
+                    <p>Authorized service center with specialized diagnostic tools.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <i class="bi bi-arrow-left-right"></i>
+                    </div>
+                    <h4>Sell Your Car</h4>
+                    <p>We offer premium consignment services to help you sell your car.</p>
+                </div>
+            </div>
         </div>
-    </div>
-
             
-            </div>
-    </div>
-</div>
+        <div class="row justify-content-center mt-5 pt-4 reveal">
+            <div class="col-lg-8">
+                <div class="service-booking-card">
+                    <h3 class="text-center mb-4"><i class="bi bi-calendar-check me-2 text-primary"></i>Schedule an Appointment</h3>
+                    <p class="text-center text-muted mb-4">Fill out the form below and our service advisor will contact you shortly.</p>
+                    
+                    <form id="serviceForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="tel" class="form-control" placeholder="Phone Number" required>
+                            </div>
 
-<div id="services" class="page-section">
-    <div class="container my-5">
-        <h2 class="text-center mb-4">Our Premium Services</h2>
-        <p class="text-center text-muted mb-5">Experience a complete suite of services tailored to luxury car ownership.</p>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Car Model (e.g. Porsche 911)" required>
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-select">
+                                    <option selected>Select Service Type</option>
+                                    <option value="1">Routine Maintenance</option>
+                                    <option value="2">Detailing & Ceramic Coating</option>
+                                    <option value="3">Repair / Diagnostics</option>
+                                    <option value="4">Consignment (Sell my Car)</option>
+                                </select>
+                            </div>
 
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="service-card">
-                    <i class="bi bi-car-front service-icon"></i>
-                    <h4>Certified Pre-Owned</h4>
-                    <p>High-quality, thoroughly inspected luxury cars.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="service-card">
-                    <i class="bi bi-cash-coin service-icon"></i>
-                    <h4>Finance & Leasing</h4>
-                    <p>Flexible EMI plans and customized leasing options.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="service-card">
-                    <i class="bi bi-wrench-adjustable service-icon"></i>
-                    <h4>Premium Car Care</h4>
-                    <p>Expert technicians and 24x7 roadside assistance.</p>
+                            <div class="col-12">
+                                <input type="date" class="form-control text-muted">
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control" rows="3" placeholder="Any specific issues or requests?"></textarea>
+                            </div>
+
+                            <div class="col-12 text-center mt-3">
+                                <button type="submit" class="btn btn-gradient px-5 py-2">
+                                    Request Appointment
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
