@@ -339,6 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function openModal(carId) {
     const car = carsData.find(c => c.id === carId);
     if (!car) return;
+    updateRecentQueue(car.name);
     document.getElementById("carTitle").innerText = car.name;
     const modalBody = document.getElementById("carBody");
     modalBody.innerHTML = `
@@ -568,7 +569,6 @@ function showCompareModal() {
         
         bodyHTML += `</tr>`;
     });
-    
     bodyObj.innerHTML = bodyHTML;
     
     // Open Bootstrap Modal
@@ -620,36 +620,83 @@ function showComingSoon(brandName) {
     // 3. Show the Modal
     new bootstrap.Modal(document.getElementById("carModal")).show();
 }
-// ==================== CLIENT REGISTRATION LOGIC (No Alert Box) ====================
-const clientForm = document.getElementById('loginForm');
-if (clientForm) {
-    clientForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Stop the page from reloading
-        
-        // 1. Get the Name
-        const nameInput = this.querySelector('input[type="text"]');
-        const clientName = nameInput ? nameInput.value : "Valued Client";
+// ==================== 11. AUTHENTICATION & VALIDATION ====================
 
-        // 2. Get the Modal Body to replace content
-        const modalBody = document.querySelector('#loginModal .modal-body');
-        
-        // 3. Replace the Form with a Success Message (Design)
-        modalBody.innerHTML = `
-            <div class="text-center py-5">
-                <div class="mb-4">
-                    <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
-                </div>
-                <h3 class="text-white fw-bold mb-3">Registration Successful!</h3>
-                <p class="text-muted">
-                    Welcome to Edelhaus, <span class="text-white fw-bold">${clientName}</span>.
-                </p>
-                <p class="text-muted small">
-                    Our concierge team has sent a confirmation email to your inbox.
-                </p>
-                <button class="btn btn-outline-light mt-4 px-4" data-bs-dismiss="modal">
-                    Close Window
-                </button>
-            </div>
-        `;
+document.addEventListener('DOMContentLoaded', function() {
+    const forms = [document.getElementById('authLoginForm'), document.getElementById('authSignupForm')];
+
+    forms.forEach(form => {
+        if (!form) return;
+
+        form.addEventListener('submit', function(event) {
+            // Check Bootstrap validation
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            } else {
+                event.preventDefault();
+                
+                // Simulate Success
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerText;
+                
+                submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Verifying...`;
+                submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    alert(form.id === 'authLoginForm' ? "Welcome back to Edelhaus!" : "Account created successfully!");
+                    bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
+                    
+                    // Reset form
+                    submitBtn.innerText = originalText;
+                    submitBtn.disabled = false;
+                    form.reset();
+                    form.classList.remove('was-validated');
+                }, 1500);
+            }
+            form.classList.add('was-validated');
+        }, false);
     });
+});
+// ==================== RECENTLY VIEWED QUEUE LOGIC ====================
+function updateRecentQueue(carName) {
+    let recentQueue = JSON.parse(sessionStorage.getItem('edelhausRecent')) || [];
+
+    if (recentQueue[0] === carName) return;
+
+    recentQueue.unshift(carName);
+
+    // --- ADD THIS LOGIC ---
+    if (recentQueue.length > 3) {
+        const removedCar = recentQueue.pop(); // Remove and store the name
+        console.warn(`Queue Full! Popping oldest car: ${removedCar}`);
+    } else {
+        console.log(`Added to Queue: ${carName}. Current Size: ${recentQueue.length}`);
+    }
+    // ----------------------
+
+    sessionStorage.setItem('edelhausRecent', JSON.stringify(recentQueue));
+    displayRecentCars();
+}
+function displayRecentCars() {
+    const container = document.getElementById('recentViewedContainer');
+    const section = document.getElementById('recentSection');
+    const recentQueue = JSON.parse(sessionStorage.getItem('edelhausRecent')) || [];
+
+    if (!container) return;
+
+    if (recentQueue.length === 0) {
+        section.style.display = 'none'; // Hide section if empty
+        return;
+    }
+
+    section.style.display = 'block';
+    container.innerHTML = recentQueue.map(name => `
+        <div class="col-4">
+            <div class="p-2 border border-secondary rounded text-center bg-dark">
+                <small class="text-white-50 d-block">Previously Viewed</small>
+                <span class="text-white fw-bold" style="font-size: 0.8rem;">${name}</span>
+            </div>
+        </div>
+    `).join('');
 }
