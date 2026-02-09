@@ -1041,3 +1041,14 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     border-radius: 15px;
     border: 1px dashed #333;
 }
+/* ============== currency converter */
+.cursor-pointer:hover {
+    color: #3498db !important; /* Brand blue glow on hover */
+    transition: all 0.3s ease;
+}
+
+/* Ensure the price also updates its style */
+.car-price {
+    font-family: 'Montserrat', sans-serif;
+    transition: opacity 0.2s ease-in-out;
+}

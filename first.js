@@ -4,6 +4,8 @@ const itemsPerPage = 3;
 let currentBrandFilter = 'all';
 let searchTerm = '';
 let carsData = []; 
+let currentCurrency = 'INR'; 
+const exchangeRate = 120000; // 1 Crore INR ≈ 120,000 USD
 
 // ==================== 2. API LOAD ====================
 async function loadCarsData() {
@@ -15,6 +17,7 @@ async function loadCarsData() {
         renderInventoryCars();
         createBrandDropdown();
         updateStockDisplay();
+        updateGarageUI();
         
         console.log("API Success: Data loaded successfully");
     } catch (error) {
@@ -32,6 +35,7 @@ function showPage(pageName) {
     const targetPage = document.getElementById(pageName);
     if (targetPage) {
         targetPage.classList.add('active');
+        if (pageName === 'garage') renderGarage();
         setTimeout(checkScroll, 100); 
     }
     
@@ -109,22 +113,10 @@ function renderInventoryCars() {
 }
 
 function generateCarCard(car) {
-    // 1. CALCULATE STOCK (New Logic)
     const stockCount = getStockCount(car.name);
-    
-    // Create text based on the count
-    let stockStatusText = '';
-    let stockClass = '';
+    let stockStatusText = stockCount > 1 ? `${stockCount} Units Available` : '1 unit Available';
+    let stockClass = stockCount > 1 ? 'text-success' : 'text-warning';
 
-    if (stockCount > 1) {
-        stockStatusText = `${stockCount} Units Available`;
-        stockClass = 'text-success'; // Green text for plenty of stock
-    } else {
-        stockStatusText = '1 unit Available';
-        stockClass = 'text-warning'; // Yellow text for low stock
-    }
-
-    // 2. LOGIC FOR COLORS (Existing)
     let colorDotsHTML = '';
     let displayImage = car.images[0]; 
 
@@ -132,61 +124,57 @@ function generateCarCard(car) {
         displayImage = car.colors[0].img;
         colorDotsHTML = `<div class="color-options d-flex gap-2 mb-3">`;
         car.colors.forEach((color, index) => {
-            const isActive = index === 0 ? 'active' : '';
-            colorDotsHTML += `
-                <div class="color-dot ${isActive}" 
-                     style="background-color: ${color.hex}; width: 20px; height: 20px; border-radius: 50%; cursor: pointer; border: 2px solid #333;" 
-                     title="${color.name}"
-                     onclick="changeCarImage(${car.id}, '${color.img}', this)">
-                </div>`;
+            colorDotsHTML += `<div class="color-dot ${index === 0 ? 'active' : ''}" style="background-color: ${color.hex}; width: 20px; height: 20px; border-radius: 50%; cursor: pointer; border: 2px solid #333;" onclick="changeCarImage(${car.id}, '${color.img}', this)"></div>`;
         });
         colorDotsHTML += `</div>`;
     }
 
-    let imageContent = `<img id="car-img-${car.id}" src="${displayImage}" class="card-img-top" alt="${car.name}" style="height: 240px; object-fit: cover;">`;
-
-   return `
+    return `
         <div class="col-md-4">
             <div class="card car-card shadow h-100">
                 <div class="img-wrapper position-relative">
                     <span class="car-badge">${car.badge}</span>
-                    ${imageContent}
+                    <img id="car-img-${car.id}" src="${displayImage}" class="card-img-top" alt="${car.name}" style="height: 240px; object-fit: cover;">
                 </div>
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">${car.name}</h5>
                     <p class="car-subtitle mb-2">${car.subtitle}</p>
-                    
                     ${colorDotsHTML}
-
                     <div class="car-specs">
                         <div class="spec-item"><i class="bi bi-speedometer2"></i><span>${car.power}</span></div>
                         <div class="spec-item"><i class="bi bi-lightning-charge"></i><span>${car.acceleration}</span></div>
                     </div>
                     
-                    <div class="car-price mt-3">${car.price}</div>
+                    <div class="car-price mt-3">${formatPrice(car.price)}</div>
                     
-                    <div class="card-footer-info mt-auto">
-                        <span class="info-badge ${stockClass}">
-                            <i class="bi bi-box-seam me-1"></i> ${stockStatusText}
-                        </span>
+                    <div class="card-footer-info mt-auto mb-3">
+                        <span class="info-badge ${stockClass}"><i class="bi bi-box-seam me-1"></i> ${stockStatusText}</span>
                         <span class="info-badge"><i class="bi bi-calendar-check me-1"></i> ${car.year}</span>
                     </div>
                     
-                    <div class="d-flex gap-2 mt-3">
-                        <button class="btn btn-gradient flex-grow-1" onclick="openModal(${car.id})">
-                            <i class="bi bi-eye me-2"></i>View Details
-                        </button>
-                        <button class="btn btn-outline-light" onclick="toggleCompare(${car.id}, this)" title="Add to Compare">
-                            <i class="bi bi-arrow-left-right"></i>
-                        </button>
-                    </div>
-
+                    <div class="d-flex flex-column gap-2">
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-sm btn-outline-secondary border-0 text-uppercase fw-bold p-0" 
+                style="font-size: 0.6rem; letter-spacing: 1.5px; color: #888;" 
+                onclick="toggleGlobalCurrency()">
+            <i class="bi bi-currency-exchange me-1"></i> to ${currentCurrency === 'INR' ? 'USD' : 'INR'}
+        </button>
+    </div>
+    
+    <div class="d-flex gap-2">
+        <button class="btn btn-gradient flex-grow-1" onclick="openModal(${car.id})">
+            <i class="bi bi-eye me-2"></i>View Details
+        </button>
+        <button class="btn btn-outline-light" onclick="toggleCompare(${car.id}, this)" title="Add to Compare">
+            <i class="bi bi-arrow-left-right"></i>
+        </button>
+    </div>
+</div>
                 </div>
             </div>
         </div>
     `;
 }
-
 // ==================== 5. PAGINATION & FILTER LOGIC ====================
 function filterCars(category) {
     currentBrandFilter = category;
@@ -699,4 +687,25 @@ function displayRecentCars() {
             </div>
         </div>
     `).join('');
+}
+function toggleGlobalCurrency() {
+    currentCurrency = (currentCurrency === 'INR') ? 'USD' : 'INR';
+    
+    // Instantly refreshes all visible sections
+    renderInventoryCars();
+    renderFeaturedCars();
+    if (document.getElementById('garage').classList.contains('active')) renderGarage();
+}
+
+function formatPrice(priceStr) {
+    if (currentCurrency === 'INR') return priceStr;
+    const numericValue = parseFloat(priceStr.replace(/[^\d.]/g, ''));
+    if (isNaN(numericValue)) return priceStr;
+
+    const converted = numericValue * exchangeRate;
+    return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0
+    }).format(converted);
 }
