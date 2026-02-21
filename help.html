@@ -25,7 +25,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container justify-content-center">
-            <button class="navbar-toggler mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <button class="navbar-toggler mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -44,13 +44,14 @@
                         <a class="nav-link" onclick="showPage('services')">Services</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" onclick="showPage('about')">About</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" onclick="showPage('contact')">Contact</a>
                     </li>
                 </ul>
-                <div class="d-flex align-items-center justify-content-end">
-                    <a class="nav-link " href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
-                        <i class="bi bi-person-circle" style="font-size: 1.8rem;"></i>
-                    </a>
+                <div class="d-flex align-items-center justify-content-end" id="navUserArea">
+                    <!-- Injected by JS: login icon OR user dropdown -->
                 </div>
             </div>
         </div>
@@ -135,7 +136,7 @@
                 
                 <div class="carousel-item active" data-bs-interval="4000">
                     <div class="carousel-img-wrapper">
-                        <img src="Porsche/porsche_918_spyder/porsche_918_spyder3.jpg" class="d-block w-120" alt="Porsche 918">
+                        <img src="Porsche/porsche_918_spyder/porsche_918_spyder3.jpg" class="d-block w-100" alt="Porsche 918">
                         <div class="carousel-overlay"></div>
                     </div>
                     <div class="carousel-caption d-none d-md-block text-start">
@@ -213,6 +214,16 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- ==================== HOME BRAND LOGOS STRIP ==================== -->
+    <div class="container my-5 reveal">
+        <div class="text-center mb-4">
+            <h5 class="text-primary text-uppercase" style="letter-spacing:3px;font-size:0.85rem;">Our Collection</h5>
+            <h2 class="display-5 fw-bold mb-2">Premium Brands</h2>
+            <p class="text-muted">World-class manufacturers, exclusively curated</p>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center align-items-center gap-3" id="homeBrandsStrip"></div>
     </div>
 
     <div class="container my-5 reveal">
@@ -295,116 +306,221 @@
             <button class="filter-btn" onclick="filterCars('luxury')">Luxury</button>
             <button class="filter-btn" onclick="filterCars('suv')">SUVs</button>
         </div>
-        <div id="recentSection" class="container mb-4" style="display: none;">
-    <div class="row g-2 justify-content-center" id="recentViewedContainer">
-        </div>
-    <hr class="border-secondary mt-4">
-</div>
+        <!-- ====== INVENTORY CONVEYOR SLIDER ====== -->
+        <div class="inv-slider-wrapper" id="invSliderWrapper">
 
-        <div class="row g-4" id="inventoryGrid"></div>
+            <button class="inv-arrow inv-arrow-prev" id="invPrev" onclick="invMove(-1)">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+            <button class="inv-arrow inv-arrow-next" id="invNext" onclick="invMove(1)">
+                <i class="bi bi-chevron-right"></i>
+            </button>
 
-        <div class="d-flex justify-content-center mt-4">
-            <nav>
-                <ul class="pagination pagination-lg" id="inventoryPagination"></ul>
-            </nav>
-        </div>
-    </div>
-</div>
+            <div class="inv-slider-overflow">
+                <div class="inv-slider-track" id="inventoryGrid"></div>
+            </div>
 
-<div id="brands" class="page-section">
-    <div class="container my-5">
-        <div class="brand-section-header reveal">
-            <h2>Premium Automotive Brands</h2>
-            <p class="text-muted">Discover the world's most prestigious automotive manufacturers.</p>
-        </div>
-        
-        <div class="brand-category reveal">
-            <h3 class="text-white mb-5"><i class="bi bi-gem me-2" style="color:#3498db;"></i>Our Collection</h3>
-            
-            <div class="row g-4 justify-content-center">
-                
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="brand-card" onclick="filterByBrandRedirect('Rolls-Royce')">
-                        <div class="brand-logo-wrapper">
-                            <img src="LOGOS/ROLLS_ROYCE_LOGO.webp" alt="Rolls Royce">
-                        </div>
-                        <h5>Rolls Royce</h5>
-                        <p>"Strive for Perfection"</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="brand-card" onclick="filterByBrandRedirect('Bentley')">
-                        <div class="brand-logo-wrapper">
-                            <img src="LOGOS/B_logo.jpg" alt="Bentley">
-                        </div>
-                        <h5>Bentley</h5>
-                        <p>"Be Extraordinary"</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="brand-card" onclick="filterByBrandRedirect('Porsche')">
-                        <div class="brand-logo-wrapper">
-                            <img src="LOGOS/PORSCHE_LOGO.webp" alt="Porsche">
-                        </div>
-                        <h5>Porsche</h5>
-                        <p>"There is no substitute"</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="brand-card" onclick="filterByBrandRedirect('Ferrari')">
-                        <div class="brand-logo-wrapper">
-                            <img src="LOGOS/Ferrari_Logo.jpg" alt="Ferrari">
-                        </div>
-                        <h5>Ferrari</h5>
-                        <p>"We are the competition"</p>
-                    </div>
-                </div>
-
-                 <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="brand-card" onclick="filterByBrandRedirect('Mercedes-Benz')">
-                        <div class="brand-logo-wrapper">
-                            <img src="LOGOS/Mercedes_Benz-Logo.png" alt="Mercedes">
-                        </div>
-                        <h5>Mercedes-Benz</h5>
-                        <p>"The Best or Nothing"</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                  <div class="brand-card" onclick="showComingSoon('Bugatti')">
-                      <div class="brand-logo-wrapper">
-                         <img src="LOGOS/Bugatti.jpg" alt="Bugatti">
-                      </div>
-                    <h5>Bugatti</h5>
-                    <p>"If comparable, it is no longer Bugatti"</p>
-                 </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="brand-card" onclick="showComingSoon('Pagani')">
-                      <div class="brand-logo-wrapper">
-                         <img src="LOGOS/Pagani.jpg" alt="Pagani">
-                      </div>
-                    <h5>Pagani</h5>
-                    <p>"Art and Science"</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="brand-card" onclick="showComingSoon('Koenigsegg')">
-                      <div class="brand-logo-wrapper">
-                         <img src="LOGOS/Koenigsegg.jpg" alt="Koenigsegg">
-                      </div>
-                    <h5>Koenigsegg</h5>
-                    <p>"Spped and class "</p>
-                    </div>
-                </div>
-
+            <!-- No results -->
+            <div id="invNoResults" style="display:none;" class="text-center text-white py-5 w-100">
+                <i class="bi bi-search display-4 text-muted mb-3 d-block"></i>
+                <p class="fs-5">No cars match your search.</p>
             </div>
         </div>
     </div>
 </div>
+
+<!-- ==================== UPGRADED BRANDS PAGE ==================== -->
+<div id="brands" class="page-section">
+    <div class="container my-5">
+
+        <!-- Header -->
+        <div class="text-center mb-5 reveal">
+            <h5 class="sub-heading">OUR COLLECTION</h5>
+            <h2 class="main-heading" style="font-size:2.6rem;">PREMIUM BRANDS</h2>
+            <p class="text-muted">The world's most prestigious automotive manufacturers</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="text-center mb-5 reveal">
+            <button class="filter-btn active" onclick="filterBrandCards('all',this)">All</button>
+            <button class="filter-btn" onclick="filterBrandCards('luxury',this)">Luxury GT</button>
+            <button class="filter-btn" onclick="filterBrandCards('hypercar',this)">Hypercars</button>
+            <button class="filter-btn" onclick="filterBrandCards('suv',this)">SUV</button>
+            <button class="filter-btn" onclick="filterBrandCards('exclusive',this)">Exclusive</button>
+        </div>
+
+        <!-- Brand Cards Grid -->
+        <div class="row g-4 justify-content-center reveal" id="brandsGrid">
+
+            <!-- Rolls-Royce -->
+            <div class="col-lg-3 col-md-4 col-sm-6 brand-filter-card" data-cat="luxury">
+                <div class="brand-card-simple">
+                    <div class="brand-logo-wrapper">
+                        <img src="LOGOS/ROLLS_ROYCE_LOGO.webp" alt="Rolls-Royce">
+                    </div>
+                    <h5>Rolls-Royce</h5>
+                    <p>"Strive for Perfection"</p>
+                    <span class="brand-meta">🇬🇧 Est. 1906</span>
+                    <button class="btn btn-gradient w-100 mt-3" onclick="filterByBrandRedirect('Rolls-Royce')">
+                        <i class="bi bi-car-front-fill me-2"></i>View Cars
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bentley -->
+            <div class="col-lg-3 col-md-4 col-sm-6 brand-filter-card" data-cat="luxury">
+                <div class="brand-card-simple">
+                    <div class="brand-logo-wrapper">
+                        <img src="LOGOS/B_logo.jpg" alt="Bentley">
+                    </div>
+                    <h5>Bentley</h5>
+                    <p>"Be Extraordinary"</p>
+                    <span class="brand-meta">🇬🇧 Est. 1919</span>
+                    <button class="btn btn-gradient w-100 mt-3" onclick="filterByBrandRedirect('Bentley')">
+                        <i class="bi bi-car-front-fill me-2"></i>View Cars
+                    </button>
+                </div>
+            </div>
+
+            <!-- Porsche -->
+            <div class="col-lg-3 col-md-4 col-sm-6 brand-filter-card" data-cat="luxury">
+                <div class="brand-card-simple">
+                    <div class="brand-logo-wrapper">
+                        <img src="LOGOS/PORSCHE_LOGO.webp" alt="Porsche">
+                    </div>
+                    <h5>Porsche</h5>
+                    <p>"There Is No Substitute"</p>
+                    <span class="brand-meta">🇩🇪 Est. 1931</span>
+                    <button class="btn btn-gradient w-100 mt-3" onclick="filterByBrandRedirect('Porsche')">
+                        <i class="bi bi-car-front-fill me-2"></i>View Cars
+                    </button>
+                </div>
+            </div>
+
+            <!-- Ferrari -->
+            <div class="col-lg-3 col-md-4 col-sm-6 brand-filter-card" data-cat="hypercar">
+                <div class="brand-card-simple">
+                    <div class="brand-logo-wrapper">
+                        <img src="LOGOS/Ferrari_Logo.jpg" alt="Ferrari">
+                    </div>
+                    <h5>Ferrari</h5>
+                    <p>"We Are the Competition"</p>
+                    <span class="brand-meta">🇮🇹 Est. 1947</span>
+                    <button class="btn btn-gradient w-100 mt-3" onclick="filterByBrandRedirect('Ferrari')">
+                        <i class="bi bi-car-front-fill me-2"></i>View Cars
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mercedes-Benz -->
+            <div class="col-lg-3 col-md-4 col-sm-6 brand-filter-card" data-cat="luxury">
+                <div class="brand-card-simple">
+                    <div class="brand-logo-wrapper">
+                        <img src="LOGOS/Mercedes_Benz-Logo.png" alt="Mercedes-Benz">
+                    </div>
+                    <h5>Mercedes-Benz</h5>
+                    <p>"The Best or Nothing"</p>
+                    <span class="brand-meta">🇩🇪 Est. 1926</span>
+                    <button class="btn btn-gradient w-100 mt-3" onclick="filterByBrandRedirect('Mercedes-Benz')">
+                        <i class="bi bi-car-front-fill me-2"></i>View Cars
+                    </button>
+                </div>
+            </div>
+
+            <!-- McLaren -->
+            <div class="col-lg-3 col-md-4 col-sm-6 brand-filter-card" data-cat="hypercar">
+                <div class="brand-card-simple">
+                    <div class="brand-logo-wrapper">
+                        <img src="LOGOS/MCLAREN_LOGO.jpg" alt="Mclearn">
+                    </div>
+                    <h5>McLaren</h5>
+                    <p>"Everything For A Reason"</p>
+                    <span class="brand-meta">🇬🇧 Est. 1963</span>
+                    <button class="btn btn-gradient w-100 mt-3" onclick="filterByBrandRedirect('Mclarean')">
+                        <i class="bi bi-car-front-fill me-2"></i>View Cars
+                    </button>
+                </div>
+            </div>
+
+            <!-- Range Rover -->
+            <div class="col-lg-3 col-md-4 col-sm-6 brand-filter-card" data-cat="suv">
+                <div class="brand-card-simple">
+                    <div class="brand-logo-wrapper">
+                        <img src="LOGOS/RANGE_ROVER_LOGO.webp" alt="Range Rover">
+                    </div>
+                    <h5>Range Rover</h5>
+                    <p>"Above &amp; Beyond"</p>
+                    <span class="brand-meta">🇬🇧 Est. 1970</span>
+                    <button class="btn btn-gradient w-100 mt-3" onclick="filterByBrandRedirect('Range Rover')">
+                        <i class="bi bi-car-front-fill me-2"></i>View Cars
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bugatti — Coming Soon -->
+            <div class="col-lg-3 col-md-4 col-sm-6 brand-filter-card" data-cat="exclusive">
+                <div class="brand-card-simple coming-soon-simple">
+                    <div class="cs-ribbon">COMING SOON</div>
+                    <div class="brand-logo-wrapper" style="opacity:0.5;">
+                        <img src="LOGOS/Bugatti.jpg" alt="Bugatti">
+                    </div>
+                    <h5>Bugatti</h5>
+                    <p>"If Comparable, It Is No Longer Bugatti"</p>
+                    <span class="brand-meta">🇫🇷 Est. 1909</span>
+                    <div class="notify-wrap mt-3" onclick="event.stopPropagation()">
+                        <input type="email" class="notify-input" placeholder="Your email" id="n-Bugatti">
+                        <button class="notify-btn" onclick="saveNotify('Bugatti')">
+                            <i class="bi bi-bell-fill me-1"></i>Notify Me
+                        </button>
+                        <p class="notify-ok" id="nok-Bugatti"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagani — Coming Soon -->
+            <div class="col-lg-3 col-md-4 col-sm-6 brand-filter-card" data-cat="exclusive">
+                <div class="brand-card-simple coming-soon-simple">
+                    <div class="cs-ribbon">COMING SOON</div>
+                    <div class="brand-logo-wrapper" style="opacity:0.5;">
+                        <img src="LOGOS/Pagani.jpg" alt="Pagani">
+                    </div>
+                    <h5>Pagani</h5>
+                    <p>"Art and Science"</p>
+                    <span class="brand-meta">🇮🇹 Est. 1992</span>
+                    <div class="notify-wrap mt-3" onclick="event.stopPropagation()">
+                        <input type="email" class="notify-input" placeholder="Your email" id="n-Pagani">
+                        <button class="notify-btn" onclick="saveNotify('Pagani')">
+                            <i class="bi bi-bell-fill me-1"></i>Notify Me
+                        </button>
+                        <p class="notify-ok" id="nok-Pagani"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Koenigsegg — Coming Soon -->
+            <div class="col-lg-3 col-md-4 col-sm-6 brand-filter-card" data-cat="exclusive">
+                <div class="brand-card-simple coming-soon-simple">
+                    <div class="cs-ribbon">COMING SOON</div>
+                    <div class="brand-logo-wrapper" style="opacity:0.5;">
+                        <img src="LOGOS/Koenigsegg.jpg" alt="Koenigsegg">
+                    </div>
+                    <h5>Koenigsegg</h5>
+                    <p>"Speed and Class"</p>
+                    <span class="brand-meta">🇸🇪 Est. 1994</span>
+                    <div class="notify-wrap mt-3" onclick="event.stopPropagation()">
+                        <input type="email" class="notify-input" placeholder="Your email" id="n-Koenigsegg">
+                        <button class="notify-btn" onclick="saveNotify('Koenigsegg')">
+                            <i class="bi bi-bell-fill me-1"></i>Notify Me
+                        </button>
+                        <p class="notify-ok" id="nok-Koenigsegg"></p>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /row -->
+    </div><!-- /container -->
+</div>
+
 <div id="services" class="page-section">
     <div class="container my-5">
         <div class="text-center mb-5 reveal">
@@ -472,42 +588,114 @@
         <div class="row justify-content-center mt-5 pt-4 reveal">
             <div class="col-lg-8">
                 <div class="service-booking-card">
-                    <h3 class="text-center mb-4"><i class="bi bi-calendar-check me-2 text-primary"></i>Schedule an Appointment</h3>
+                    <h3 class="text-center mb-2"><i class="bi bi-calendar-check me-2 text-primary"></i>Schedule an Appointment</h3>
                     <p class="text-center text-muted mb-4">Fill out the form below and our service advisor will contact you shortly.</p>
-                    
-                    <form id="serviceForm">
+
+                    <!-- Success banner (hidden by default) -->
+                    <div id="svcSuccessBanner" style="display:none;background:rgba(39,174,96,0.10);border:1px solid rgba(46,204,113,0.3);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;">
+                        <div style="display:flex;align-items:center;gap:.75rem;">
+                            <div style="width:40px;height:40px;border-radius:50%;background:rgba(46,204,113,0.15);border:1px solid #2ecc71;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                <i class="bi bi-check-lg" style="color:#2ecc71;font-size:1.1rem;"></i>
+                            </div>
+                            <div>
+                                <div style="color:#fff;font-weight:600;font-size:.9rem;">Appointment Requested!</div>
+                                <div id="svcSuccessDetail" style="color:rgba(255,255,255,.5);font-size:.78rem;margin-top:2px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="serviceForm" class="needs-validation" novalidate>
                         <div class="row g-3">
+
+                            <!-- Name & Phone -->
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Your Name" required>
+                                <label class="form-label svc-label">FULL NAME *</label>
+                                <input type="text" id="svcName" class="form-control" placeholder="Your full name" required minlength="2">
+                                <div class="invalid-feedback">Please enter your name (min 2 characters).</div>
                             </div>
                             <div class="col-md-6">
-                                <input type="tel" class="form-control" placeholder="Phone Number" required>
+                                <label class="form-label svc-label">PHONE NUMBER *</label>
+                                <input type="tel" id="svcPhone" class="form-control" placeholder="98765 43210" required pattern="[0-9+\s\-]{10,15}">
+                                <div class="invalid-feedback">Please enter a valid phone number (10–15 digits).</div>
                             </div>
 
+                            <!-- Car dropdown (populated from cars.json) + service type -->
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Car Model (e.g. Porsche 911)" required>
-                            </div>
-                            <div class="col-md-6">
-                                <select class="form-select">
-                                    <option selected>Select Service Type</option>
-                                    <option value="1">Routine Maintenance</option>
-                                    <option value="2">Detailing & Ceramic Coating</option>
-                                    <option value="3">Repair / Diagnostics</option>
-                                    <option value="4">Consignment (Sell my Car)</option>
+                                <label class="form-label svc-label">SELECT VEHICLE *</label>
+                                <select id="svcCar" class="form-select" required>
+                                    <option value="" disabled selected>Choose a car from our fleet…</option>
+                                    <optgroup label="— Or enter your own —">
+                                        <option value="__own__">My own car (enter below)</option>
+                                    </optgroup>
                                 </select>
+                                <div class="invalid-feedback">Please select a vehicle.</div>
                             </div>
 
-                            <div class="col-12">
-                                <input type="date" class="form-control text-muted">
-                            </div>
-                            <div class="col-12">
-                                <textarea class="form-control" rows="3" placeholder="Any specific issues or requests?"></textarea>
+                            <!-- Own car text field (shown only when "My own car" selected) -->
+                            <div class="col-md-6" id="svcOwnCarWrap" style="display:none;">
+                                <label class="form-label svc-label">YOUR CAR MODEL *</label>
+                                <input type="text" id="svcOwnCar" class="form-control" placeholder="e.g. BMW M5, Audi RS6…">
+                                <div class="invalid-feedback">Please enter your car model.</div>
                             </div>
 
-                            <div class="col-12 text-center mt-3">
-                                <button type="submit" class="btn btn-gradient px-5 py-2">
-                                    Request Appointment
+                            <!-- Service type (always full-width when own car shown) -->
+                            <div class="col-md-6" id="svcTypeWrap">
+                                <label class="form-label svc-label">SERVICE TYPE *</label>
+                                <select id="svcType" class="form-select" required>
+                                    <option value="" disabled selected>Select service type…</option>
+                                    <option value="Routine Maintenance">🔧 Routine Maintenance</option>
+                                    <option value="Detailing & Ceramic Coating">✨ Detailing & Ceramic Coating</option>
+                                    <option value="Repair / Diagnostics">🛠 Repair / Diagnostics</option>
+                                    <option value="Performance Tuning">⚡ Performance Tuning</option>
+                                    <option value="PPF / Paint Protection">🛡 PPF / Paint Protection</option>
+                                    <option value="Consignment (Sell my Car)">🔄 Consignment (Sell my Car)</option>
+                                    <option value="Private Viewing">👁 Private Viewing</option>
+                                    <option value="Other">📋 Other</option>
+                                </select>
+                                <div class="invalid-feedback">Please select a service type.</div>
+                            </div>
+
+                            <!-- Date with full validation -->
+                            <div class="col-md-6">
+                                <label class="form-label svc-label">PREFERRED DATE *</label>
+                                <input type="date" id="svcDate" class="form-control" required>
+                                <div class="invalid-feedback" id="svcDateError">Please select a valid future date.</div>
+                                <small id="svcDateHint" class="text-muted" style="font-size:.72rem;margin-top:4px;display:block;">
+                                    <i class="bi bi-info-circle me-1"></i>Mon–Sat only · Sundays by appointment
+                                </small>
+                            </div>
+
+                            <!-- Time slot -->
+                            <div class="col-md-6">
+                                <label class="form-label svc-label">PREFERRED TIME *</label>
+                                <select id="svcTime" class="form-select" required>
+                                    <option value="" disabled selected>Select time slot…</option>
+                                    <option value="10:00 AM">10:00 AM</option>
+                                    <option value="11:00 AM">11:00 AM</option>
+                                    <option value="12:00 PM">12:00 PM</option>
+                                    <option value="2:00 PM">2:00 PM</option>
+                                    <option value="3:00 PM">3:00 PM</option>
+                                    <option value="4:00 PM">4:00 PM</option>
+                                    <option value="5:00 PM">5:00 PM</option>
+                                    <option value="6:00 PM">6:00 PM</option>
+                                </select>
+                                <div class="invalid-feedback">Please select a time slot.</div>
+                            </div>
+
+                            <!-- Notes -->
+                            <div class="col-12">
+                                <label class="form-label svc-label">ADDITIONAL NOTES (OPTIONAL)</label>
+                                <textarea id="svcNotes" class="form-control" rows="3" placeholder="Describe any specific issues, requests or questions…"></textarea>
+                            </div>
+
+                            <!-- Submit -->
+                            <div class="col-12 text-center mt-2">
+                                <button type="submit" class="btn btn-gradient px-5 py-2 fw-bold" style="letter-spacing:1px;">
+                                    <i class="bi bi-calendar-check me-2"></i>Request Appointment
                                 </button>
+                                <p class="text-muted small mt-3 mb-0">
+                                    <i class="bi bi-shield-lock me-1 text-primary"></i>Your data is saved securely in your browser
+                                </p>
                             </div>
                         </div>
                     </form>
@@ -517,58 +705,265 @@
     </div>
 </div>
 
-<div id="about" class="page-section">
-    <div class="container my-5">
-        <div class="row align-items-center g-5 reveal">
-            <div class="col-md-6">
-                <h5 class="sub-heading">THE LEGACY</h5>
-                <h2 class="main-heading">REDEFINING AUTOMOTIVE EXCELLENCE</h2>
-                <p class="description-text">
-                    Established in 2026 in Ahmedabad, Edelhaus Automotive has quickly become the pinnacle of luxury car showrooms in India. 
-                    We don't just sell cars; we curate the world's most exclusive automotive masterpieces.
-                </p>
-                <div class="row g-4 mt-2">
-                    <div class="col-6">
-                        <h4 class="text-white mb-0">2,000+</h4>
-                        <p class="small text-muted">VEHICLES DELIVERED</p>
-                    </div>
-                    <div class="col-6">
-                        <h4 class="text-white mb-0">15+</h4>
-                        <p class="small text-muted">GLOBAL BRANDS</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="image-wrapper">
-                    <img src="https://images.pexels.com/photos/97079/pexels-photo-97079.jpeg" class="img-fluid rounded shadow-lg blended-image" alt="Showroom Interior">
-                </div>
-            </div>
-        </div>
+<style>
+.svc-label {
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: block;
+}
+#serviceForm .form-control,
+#serviceForm .form-select {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #fff;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+#serviceForm .form-control:focus,
+#serviceForm .form-select:focus {
+    background: rgba(255,255,255,0.06);
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52,152,219,0.15);
+    color: #fff;
+}
+#serviceForm .form-control::placeholder { color: rgba(255,255,255,0.3); }
+#serviceForm .form-select option { background: #1a1a1a; color: #fff; }
+#serviceForm .form-select option:disabled { color: rgba(255,255,255,0.3); }
+#serviceForm .form-control.is-invalid,
+#serviceForm .form-select.is-invalid {
+    border-color: #e74c3c;
+    box-shadow: 0 0 0 3px rgba(231,76,60,0.15);
+}
+#serviceForm .form-control.is-valid,
+#serviceForm .form-select.is-valid {
+    border-color: #2ecc71;
+    box-shadow: none;
+}
+/* Date input dark styling fix */
+#svcDate::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.5;
+    cursor: pointer;
+}
+</style>
 
-        <div class="row mt-5 g-4 reveal">
-            <div class="col-lg-4">
-                <div class="brand-card h-100 p-4">
-                    <i class="bi bi-globe-americas display-5 text-primary mb-3"></i>
-                    <h5>Global Sourcing</h5>
-                    <p class="text-muted small">We utilize a vast global network to source rare hypercars and limited-edition models directly from Japan, the UK, and Dubai.</p>
+<div id="about" class="page-section about-page">
+
+    <!-- ── HERO BANNER ── -->
+    <div class="about-hero">
+        <img src="https://images.pexels.com/photos/1638459/pexels-photo-1638459.jpeg"
+             alt="Edelhaus Showroom" class="about-hero-img">
+        <div class="about-hero-overlay"></div>
+        <div class="about-hero-content container text-center">
+            <h5 class="sub-heading mb-3">ESTABLISHED 2026 · AHMEDABAD, INDIA</h5>
+            <h1 class="about-hero-title">EDELHAUS AUTOMOTIVE</h1>
+            <p class="about-hero-desc">
+                Edelhaus Automotive is recognized as India's finest luxury car showroom, offering an
+                unrivalled collection of modern supercars, hypercars and luxury automobiles. Our showroom
+                features exclusive brands including
+                <span class="brand-highlight">Bugatti</span>,
+                <span class="brand-highlight">Ferrari</span>,
+                <span class="brand-highlight">Lamborghini</span>,
+                <span class="brand-highlight">Pagani</span>,
+                <span class="brand-highlight">Mercedes-Benz</span>,
+                <span class="brand-highlight">Rolls-Royce</span>,
+                <span class="brand-highlight">McLaren</span> and
+                <span class="brand-highlight">Porsche</span>.
+            </p>
+        </div>
+    </div>
+
+    <!-- ── QUICK LINK CARDS ── -->
+    <div class="container about-quick-links">
+        <div class="row g-3">
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="about-link-card" onclick="showPage('inventory')">
+                    <i class="bi bi-car-front-fill"></i>
+                    <span>Available Cars</span>
+                    <small>Explore Now</small>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="brand-card h-100 p-4">
-                    <i class="bi bi-shield-lock display-5 text-primary mb-3"></i>
-                    <h5>Bespoke Security</h5>
-                    <p class="text-muted small">Every vehicle undergoes a rigorous 150-point Edelhaus Certification, ensuring that performance and luxury are never compromised.</p>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="about-link-card" onclick="showPage('inventory')">
+                    <i class="bi bi-tag-fill"></i>
+                    <span>Sold Cars</span>
+                    <small>Explore Now</small>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="brand-card h-100 p-4">
-                    <i class="bi bi-person-check display-5 text-primary mb-3"></i>
-                    <h5>Client Experience</h5>
-                    <p class="text-muted small">Our dedicated consultants provide a personalized journey, from private showroom viewings to bespoke door-step delivery across Gujarat.</p>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="about-link-card" onclick="showPage('brands')">
+                    <i class="bi bi-gem"></i>
+                    <span>Our Brands</span>
+                    <small>Explore Now</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="about-link-card" onclick="showPage('services')">
+                    <i class="bi bi-tools"></i>
+                    <span>Services</span>
+                    <small>Explore Now</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="about-link-card" onclick="showPage('garage')">
+                    <i class="bi bi-heart-fill"></i>
+                    <span>My Wishlist</span>
+                    <small>Explore Now</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="about-link-card" onclick="showPage('contact')">
+                    <i class="bi bi-telephone-fill"></i>
+                    <span>Contact Us</span>
+                    <small>Get in Touch</small>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- ── STATS ROW ── -->
+    <div class="about-stats-bar reveal">
+        <div class="container">
+            <div class="row g-0 justify-content-center">
+                <div class="col-6 col-md-3">
+                    <div class="about-stat-item">
+                        <div class="about-stat-number">2,000+</div>
+                        <div class="about-stat-label">VEHICLES DELIVERED</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="about-stat-item">
+                        <div class="about-stat-number">15+</div>
+                        <div class="about-stat-label">GLOBAL BRANDS</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="about-stat-item">
+                        <div class="about-stat-number">200+</div>
+                        <div class="about-stat-label">HAPPY CLIENTS</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="about-stat-item">
+                        <div class="about-stat-number">3</div>
+                        <div class="about-stat-label">COUNTRIES SOURCED</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── SPLIT CONTENT — OUR STORY ── -->
+    <div class="container my-5 py-4">
+        <div class="row align-items-center g-5 reveal">
+            <div class="col-lg-6">
+                <h5 class="sub-heading">THE LEGACY</h5>
+                <h2 class="main-heading">REDEFINING AUTOMOTIVE EXCELLENCE</h2>
+                <p class="description-text">
+                    Established in 2026 in Ahmedabad, Edelhaus Automotive has quickly become the pinnacle of luxury
+                    car showrooms in India. We don't just sell cars — we curate the world's most exclusive
+                    automotive masterpieces.
+                </p>
+                <p class="description-text">
+                    Every vehicle in our collection is hand-selected, inspected against our rigorous 150-point
+                    Edelhaus Certification, and presented in a showroom designed to match the grandeur of the
+                    automobiles inside.
+                </p>
+                <button class="btn btn-gradient px-5 py-2 mt-2" onclick="showPage('inventory')">
+                    <i class="bi bi-car-front me-2"></i>EXPLORE INVENTORY
+                </button>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-img-grid">
+                    <img src="https://images.pexels.com/photos/97079/pexels-photo-97079.jpeg"
+                         alt="Showroom" class="about-grid-img about-grid-img-large">
+                    <img src="https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg"
+                         alt="Detail" class="about-grid-img about-grid-img-small-top">
+                    <img src="https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg"
+                         alt="Cars" class="about-grid-img about-grid-img-small-bottom">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── THREE PILLARS ── -->
+    <div class="about-pillars-section reveal">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h5 class="sub-heading">WHAT SETS US APART</h5>
+                <h2 class="main-heading" style="font-size:2.4rem;">OUR PHILOSOPHY</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="about-pillar-card">
+                        <div class="about-pillar-icon">
+                            <i class="bi bi-globe-americas"></i>
+                        </div>
+                        <h4>Global Sourcing</h4>
+                        <p>We utilize a vast global network to source rare hypercars and limited-edition models
+                           directly from Japan, the UK, and Dubai — often before they reach the open market.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="about-pillar-card about-pillar-featured">
+                        <div class="about-pillar-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h4>Edelhaus Certified</h4>
+                        <p>Every vehicle undergoes a rigorous 150-point Edelhaus Certification, ensuring that
+                           performance, luxury and authenticity are never compromised — ever.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="about-pillar-card">
+                        <div class="about-pillar-icon">
+                            <i class="bi bi-person-check"></i>
+                        </div>
+                        <h4>White Glove Experience</h4>
+                        <p>Our dedicated consultants provide a fully personalized journey — from private showroom
+                           viewings to bespoke door-step delivery across Gujarat and beyond.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── NEWSLETTER / STAY CONNECTED ── -->
+    <div class="about-newsletter reveal">
+        <div class="container">
+            <div class="about-newsletter-inner">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-5">
+                        <h5 class="sub-heading">STAY IN THE LOOP</h5>
+                        <h3 class="text-white fw-bold mb-2" style="font-family:'Cinzel',serif;font-size:1.8rem;">
+                            Stay Ahead of the Curve
+                        </h3>
+                        <p class="text-muted mb-0">
+                            Stay up to date with the latest luxury automobile arrivals, exclusive events and
+                            insider news from the world of high-end vehicles.
+                        </p>
+                    </div>
+                    <div class="col-lg-7">
+                        <form class="about-newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+                            <div class="about-nl-input-wrap">
+                                <input type="email" class="about-nl-input" placeholder="Enter your email address" required>
+                                <button type="submit" class="btn btn-gradient about-nl-btn">
+                                    <i class="bi bi-send me-1"></i>SUBSCRIBE
+                                </button>
+                            </div>
+                            <p class="about-nl-note">No spam. Unsubscribe anytime. By subscribing you agree to our privacy policy.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <div id="contact" class="page-section">
@@ -579,17 +974,20 @@
                 <form id="contactForm" class="needs-validation" novalidate>
     <div class="row g-3">
         <div class="col-md-6 mb-3">
-            <label class="form-label small text-muted">FULL NAME</label>
-            <input type="text" class="form-control" placeholder="Enter your name" required>
+            <label class="form-label small text-muted">FULL NAME *</label>
+            <input type="text" id="contactName" class="form-control" placeholder="Enter your name" required minlength="2">
+            <div class="invalid-feedback">Please enter your full name.</div>
         </div>
         <div class="col-md-6 mb-3">
-            <label class="form-label small text-muted">PHONE NUMBER</label>
-            <input type="tel" class="form-control" placeholder="+91 XXXXX XXXXX" required pattern="[0-9]{10}">
+            <label class="form-label small text-muted">PHONE NUMBER *</label>
+            <input type="tel" id="contactPhone" class="form-control" placeholder="98765 43210" required pattern="[0-9+\s\-]{10,15}">
+            <div class="invalid-feedback">Please enter a valid phone number (10–15 digits).</div>
         </div>
     </div>
     <div class="mb-3">
-        <label class="form-label small text-muted">EMAIL ADDRESS</label>
-        <input type="email" class="form-control" placeholder="name@example.com" required>
+        <label class="form-label small text-muted">EMAIL ADDRESS *</label>
+        <input type="email" id="contactEmail" class="form-control" placeholder="name@example.com" required>
+        <div class="invalid-feedback">Please enter a valid email address.</div>
     </div>
     <div class="mb-3">
         <label class="form-label small text-muted">INTERESTED IN</label>
@@ -602,8 +1000,9 @@
         </select>
     </div>
     <div class="mb-3">
-        <label class="form-label small text-muted">MESSAGE</label>
-        <textarea class="form-control" rows="4" placeholder="How can our consultants assist you today?" required></textarea>
+        <label class="form-label small text-muted">MESSAGE *</label>
+        <textarea id="contactMessage" class="form-control" rows="4" placeholder="How can our consultants assist you today?" required minlength="10"></textarea>
+        <div class="invalid-feedback">Please enter a message (at least 10 characters).</div>
     </div>
     <button type="submit" class="btn btn-gradient px-5 py-2">
         SEND ENQUIRY
@@ -611,16 +1010,621 @@
 </form>
             </div>
             <div class="col-md-6">
-                <h5>Showroom Address</h5>
-                <p>CarWorld Luxury Motors<br>SG Highway, Ahmedabad, Gujarat, India</p>
-                <h5 class="mt-4">Contact Details</h5>
-                <p><i class="bi bi-telephone me-2"></i>+91-98765-43210</p>
-                <p><i class="bi bi-envelope me-2"></i>info@carworldluxury.in</p>
+                <div class="contact-info-card">
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                        <div>
+                            <h6 class="text-white mb-1">Showroom Address</h6>
+                            <p class="text-muted mb-0">CarWorld Luxury Motors<br>SG Highway, Ahmedabad, Gujarat, India</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="bi bi-telephone-fill"></i></div>
+                        <div>
+                            <h6 class="text-white mb-1">Phone</h6>
+                            <p class="text-muted mb-0">+91-98765-43210</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="bi bi-envelope-fill"></i></div>
+                        <div>
+                            <h6 class="text-white mb-1">Email</h6>
+                            <p class="text-muted mb-0"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9df4f3fbf2ddf8f9f8f1f5fce8eeb3f4f3">[email&#160;protected]</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="bi bi-clock-fill"></i></div>
+                        <div>
+                            <h6 class="text-white mb-1">Showroom Hours</h6>
+                            <p class="text-muted mb-0">Mon – Sat: 10:00 AM – 7:00 PM<br>Sunday: By Appointment Only</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- ==================== GARAGE PAGE ==================== -->
+<div id="garage" class="page-section">
+    <div class="container my-5">
+
+        <!-- Page heading — always visible -->
+        <div class="text-center mb-5 reveal">
+            <h5 class="text-primary text-uppercase" style="letter-spacing:3px;font-size:0.85rem;">Your Collection</h5>
+            <h2 class="display-5 fw-bold text-white">My Wishlist</h2>
+            <p class="text-muted">Cars you've saved to your personal wishlist</p>
+        </div>
+
+        <!-- Empty state — shown by JS when garage is empty -->
+        <div id="garageEmpty" style="display:none;">
+            <div class="garage-empty-card">
+                <div class="garage-empty-icon-ring">
+                    <i class="bi bi-heart"></i>
+                </div>
+                <h3 class="text-white fw-bold mt-4 mb-2">Your Wishlist is Empty</h3>
+                <p class="text-muted mb-4" style="max-width:380px;margin:0 auto 24px;">
+                    You haven't saved any cars yet. Browse our inventory and click
+                    <i class="bi bi-heart text-danger mx-1"></i> on any car to add it here.
+                </p>
+                <button class="btn btn-gradient px-5 py-2" onclick="showPage('inventory')">
+                    <i class="bi bi-car-front me-2"></i>Browse Inventory
+                </button>
+            </div>
+        </div>
+
+        <!-- Cars grid — populated by JS -->
+        <div class="row g-4" id="garageGrid"></div>
+
+    </div>
+</div>
+
+<!-- ==================== MY BOOKINGS PAGE ==================== -->
+<div id="testdrives" class="page-section">
+
+    <!-- ── HERO BANNER ── -->
+    <div class="td-page-hero">
+        <div class="td-hero-bg"></div>
+        <div class="td-hero-overlay"></div>
+        <div class="container td-hero-content">
+            <div class="td-hero-badge"><i class="bi bi-shield-check me-2"></i>EXCLUSIVE EXPERIENCE</div>
+            <h1 class="td-hero-title">Test Drive<br><span class="td-hero-accent">Booking</span></h1>
+            <p class="td-hero-sub">Reserve your personal, private session behind the wheel of the world's finest automobiles.</p>
+            <div class="td-hero-stats">
+                <div class="td-stat"><span class="td-stat-num" id="tdStatTotal">0</span><span class="td-stat-lbl">My Bookings</span></div>
+                <div class="td-stat-div"></div>
+                <div class="td-stat"><span class="td-stat-num" id="tdStatUpcoming">0</span><span class="td-stat-lbl">Upcoming</span></div>
+                <div class="td-stat-div"></div>
+                <div class="td-stat"><span class="td-stat-num" id="tdStatCompleted">0</span><span class="td-stat-lbl">Completed</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container td-page-body">
+
+        <!-- ── NOT LOGGED IN STATE ── -->
+        <div id="tdLoginRequired" style="display:none;">
+            <div class="td-empty-state">
+                <div class="td-empty-icon"><i class="bi bi-person-lock"></i></div>
+                <h3 class="td-empty-title">Login to View Your Bookings</h3>
+                <p class="td-empty-sub">Create an account or log in to book a test drive and track all your scheduled sessions.</p>
+                <div class="td-empty-actions">
+                    <button class="td-cta-btn" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="bi bi-person-circle me-2"></i>Login / Sign Up
+                    </button>
+                    <button class="td-browse-btn" onclick="showPage('inventory')">
+                        <i class="bi bi-car-front me-2"></i>Browse Cars
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── EMPTY BOOKINGS STATE ── -->
+        <div id="tdNoBookings" style="display:none;">
+            <div class="td-empty-state">
+                <div class="td-empty-icon td-empty-icon-car"><i class="bi bi-calendar-x"></i></div>
+                <h3 class="td-empty-title">No Test Drives Booked Yet</h3>
+                <p class="td-empty-sub">Browse our exclusive inventory and reserve your private test drive slot with any of our vehicles.</p>
+                <div class="td-empty-actions">
+                    <button class="td-cta-btn" onclick="showPage('inventory')">
+                        <i class="bi bi-car-front me-2"></i>Explore Inventory
+                    </button>
+                </div>
+                <!-- Quick Book panel -->
+                <div class="td-quick-book">
+                    <div class="td-qb-label"><i class="bi bi-lightning-fill me-2"></i>QUICK BOOK</div>
+                    <p class="td-qb-sub">Pick any car from our lineup to instantly open the booking form.</p>
+                    <div class="td-qb-cars" id="tdQuickCars"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── BOOKINGS LIST (logged in + has bookings) ── -->
+        <div id="tdBookingsList" style="display:none;">
+
+            <!-- Controls row -->
+            <div class="td-controls">
+                <div class="td-tabs">
+                    <button class="td-tab active" id="tdTabAll" onclick="filterTDPage('all',this)">All</button>
+                    <button class="td-tab" id="tdTabUpcoming" onclick="filterTDPage('upcoming',this)">Upcoming</button>
+                    <button class="td-tab" id="tdTabPast" onclick="filterTDPage('past',this)">Completed</button>
+                </div>
+                <button class="td-add-btn" onclick="showPage('inventory')">
+                    <i class="bi bi-plus-circle me-2"></i>Book Another
+                </button>
+            </div>
+
+            <!-- Cards grid -->
+            <div class="td-cards-grid" id="tdCardsGrid"></div>
+
+            <!-- Quick Book at bottom -->
+            <div class="td-quick-book td-qb-bottom">
+                <div class="td-qb-label"><i class="bi bi-lightning-fill me-2"></i>BOOK ANOTHER CAR</div>
+                <div class="td-qb-cars" id="tdQuickCarsBottom"></div>
+            </div>
+        </div>
+
+    </div><!-- /container -->
+</div>
+
+
+<style>
+/* ══════════ TEST DRIVES PAGE STYLES ══════════ */
+
+/* HERO */
+.td-page-hero {
+    position: relative;
+    min-height: 340px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 120px;
+}
+.td-hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #050505 0%, #0d1b2a 50%, #080808 100%);
+}
+.td-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(52,152,219,0.12), transparent),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(41,128,185,0.08), transparent);
+}
+.td-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+}
+.td-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 3rem 0;
+}
+.td-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(52,152,219,0.12);
+    border: 1px solid rgba(52,152,219,0.3);
+    border-radius: 50px;
+    padding: 6px 16px;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: #3498db;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+}
+.td-hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+.td-hero-accent { color: #3498db; }
+.td-hero-sub {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.95rem;
+    max-width: 500px;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+.td-hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.td-stat { text-align: center; }
+.td-stat-num {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    font-family: 'Cinzel', serif;
+}
+.td-stat-lbl {
+    font-size: 0.65rem;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    margin-top: 4px;
+    display: block;
+}
+.td-stat-div {
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,0.12);
+}
+
+/* BODY */
+.td-page-body { padding: 3rem 12px 5rem; }
+
+/* EMPTY STATE */
+.td-empty-state {
+    text-align: center;
+    padding: 5rem 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.td-empty-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2.2rem;
+    color: rgba(255,255,255,0.3);
+}
+.td-empty-icon-car { color: #3498db; background: rgba(52,152,219,0.08); border-color: rgba(52,152,219,0.2); }
+.td-empty-title { font-family: 'Cinzel', serif; font-size: 1.5rem; color: #fff; margin-bottom: 0.75rem; }
+.td-empty-sub { color: rgba(255,255,255,0.45); font-size: 0.9rem; line-height: 1.7; margin-bottom: 2rem; }
+.td-empty-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
+.td-cta-btn {
+    background: linear-gradient(135deg, #1a5276, #2980b9);
+    border: none;
+    border-radius: 10px;
+    padding: 0.75rem 1.75rem;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.td-cta-btn:hover { background: linear-gradient(135deg, #2471a3, #3498db); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(52,152,219,0.3); }
+.td-browse-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 0.75rem 1.75rem;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.td-browse-btn:hover { background: rgba(255,255,255,0.1); }
+
+/* QUICK BOOK */
+.td-quick-book {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: left;
+    margin-top: 1rem;
+}
+.td-qb-bottom { margin-top: 3rem; }
+.td-qb-label {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: #f39c12;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.td-qb-sub { color: rgba(255,255,255,0.4); font-size: 0.82rem; margin-bottom: 1.25rem; }
+.td-qb-cars {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+.td-qb-car-chip {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50px;
+    padding: 7px 16px;
+    color: #ddd;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.td-qb-car-chip:hover {
+    background: rgba(52,152,219,0.15);
+    border-color: rgba(52,152,219,0.4);
+    color: #3498db;
+    transform: translateY(-1px);
+}
+.td-qb-car-chip img {
+    width: 28px;
+    height: 20px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* CONTROLS */
+.td-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.td-tabs {
+    display: flex;
+    gap: 0.25rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 4px;
+}
+.td-tab {
+    background: none;
+    border: none;
+    border-radius: 8px;
+    padding: 0.55rem 1.25rem;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s;
+    letter-spacing: 0.5px;
+}
+.td-tab.active {
+    background: rgba(52,152,219,0.18);
+    color: #3498db;
+    border: 1px solid rgba(52,152,219,0.35);
+}
+.td-add-btn {
+    background: linear-gradient(135deg, #1a5276, #2471a3);
+    border: none;
+    border-radius: 10px;
+    padding: 0.6rem 1.25rem;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+}
+.td-add-btn:hover { background: linear-gradient(135deg, #2471a3, #3498db); box-shadow: 0 6px 20px rgba(52,152,219,0.25); }
+
+/* CARDS GRID */
+.td-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* BOOKING CARD */
+.td-booking-card {
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.25s;
+    position: relative;
+}
+.td-booking-card:hover {
+    border-color: rgba(52,152,219,0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.6);
+}
+
+/* Status stripe at top */
+.td-card-stripe {
+    height: 3px;
+    width: 100%;
+}
+.td-stripe-confirmed { background: linear-gradient(90deg, #27ae60, #2ecc71); }
+.td-stripe-pending   { background: linear-gradient(90deg, #e67e22, #f39c12); }
+.td-stripe-cancelled { background: linear-gradient(90deg, #e74c3c, #c0392b); }
+.td-stripe-upcoming  { background: linear-gradient(90deg, #2980b9, #3498db); }
+.td-stripe-past      { background: linear-gradient(90deg, #555, #888); }
+
+/* Card image */
+.td-card-img-wrap {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+    background: #0a0a0a;
+}
+.td-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+.td-booking-card:hover .td-card-img { transform: scale(1.04); }
+.td-card-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: rgba(255,255,255,0.1);
+    background: linear-gradient(135deg, #111, #1a1a1a);
+}
+.td-card-status-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+}
+.td-badge-confirmed { background: rgba(39,174,96,0.2); border: 1px solid rgba(46,204,113,0.4); color: #2ecc71; }
+.td-badge-pending   { background: rgba(243,156,18,0.2); border: 1px solid rgba(243,156,18,0.4); color: #f39c12; }
+.td-badge-cancelled { background: rgba(231,76,60,0.2);  border: 1px solid rgba(231,76,60,0.4);  color: #e74c3c; }
+.td-badge-upcoming  { background: rgba(52,152,219,0.2); border: 1px solid rgba(52,152,219,0.4); color: #3498db; }
+.td-badge-completed { background: rgba(100,100,100,0.2);border: 1px solid rgba(150,150,150,0.3);color: #aaa; }
+
+.td-card-admin-note {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+    padding: 1.5rem 1rem 0.6rem;
+    font-size: 0.72rem;
+    color: #aaa;
+}
+.td-admin-confirmed { color: #2ecc71; }
+.td-admin-cancelled { color: #e74c3c; }
+
+/* Card body */
+.td-card-body { padding: 1.25rem; }
+.td-card-car-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.td-card-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+    margin-bottom: 1rem;
+}
+.td-card-info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+}
+.td-card-info-item i { color: #3498db; font-size: 0.85rem; flex-shrink: 0; }
+.td-card-info-item span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.td-card-notes {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.77rem;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+.td-card-actions {
+    display: flex;
+    gap: 0.6rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 1rem;
+}
+.td-btn-modify {
+    flex: 1;
+    background: rgba(52,152,219,0.1);
+    border: 1px solid rgba(52,152,219,0.25);
+    border-radius: 8px;
+    padding: 0.55rem;
+    color: #3498db;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+.td-btn-modify:hover { background: rgba(52,152,219,0.2); }
+.td-btn-cancel {
+    background: rgba(231,76,60,0.08);
+    border: 1px solid rgba(231,76,60,0.2);
+    border-radius: 8px;
+    padding: 0.55rem 0.9rem;
+    color: #e74c3c;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+.td-btn-cancel:hover { background: rgba(231,76,60,0.18); }
+.td-btn-rebook {
+    flex: 1;
+    background: rgba(39,174,96,0.08);
+    border: 1px solid rgba(39,174,96,0.2);
+    border-radius: 8px;
+    padding: 0.55rem;
+    color: #2ecc71;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+.td-btn-rebook:hover { background: rgba(39,174,96,0.16); }
+
+/* ADMIN STATUS NOTE on card */
+.td-admin-status-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+}
+.td-admin-status-row.confirmed { background: rgba(39,174,96,0.08); border: 1px solid rgba(39,174,96,0.2); color: #2ecc71; }
+.td-admin-status-row.cancelled { background: rgba(231,76,60,0.08);  border: 1px solid rgba(231,76,60,0.2);  color: #e74c3c; }
+.td-admin-status-row.pending   { background: rgba(243,156,18,0.08); border: 1px solid rgba(243,156,18,0.2); color: #f39c12; }
+
+@media (max-width: 640px) {
+    .td-page-hero { min-height: 260px; margin-top: 100px; }
+    .td-cards-grid { grid-template-columns: 1fr; }
+    .td-hero-stats { gap: 1rem; }
+    .td-stat-num { font-size: 1.4rem; }
+}
+</style>
+
+<!-- ==================== FOOTER ==================== -->
 <footer class="footer-custom">
     <div class="container">
         <div class="row">
@@ -630,7 +1634,6 @@
                     Edelhaus Automotive was established in 2026. We have successfully sold more than 2,000 vehicles. 
                     Our inventory showcases the best examples of automotive excellence.
                 </p>
-                
                 <div class="social-links mt-4">
                     <a href="#" class="social-btn youtube"><i class="bi bi-youtube"></i></a>
                     <a href="#" class="social-btn instagram"><i class="bi bi-instagram"></i></a>
@@ -653,7 +1656,7 @@
             <div class="col-lg-3 col-md-6 mb-4">
                 <h5 class="footer-heading">CONTACT</h5>
                 <ul class="list-unstyled footer-contact">
-                    <li><i class="bi bi-envelope me-2"></i> info@edelhaus.in</li>
+                    <li><i class="bi bi-envelope me-2"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="50393e363f103534353c383125237e393e">[email&#160;protected]</a></li>
                     <li><i class="bi bi-telephone me-2"></i> +91 98765 43210</li>
                     <li><i class="bi bi-geo-alt me-2"></i> SG Highway, Ahmedabad</li>
                 </ul>
@@ -677,6 +1680,21 @@
     </button>
 </footer>
 
+<!-- ==================== TOAST CONTAINER ==================== -->
+<div id="toastContainer" style="position:fixed;bottom:24px;right:24px;z-index:99999;display:flex;flex-direction:column;gap:10px;max-width:380px;"></div>
+
+<!-- ==================== COMPARE BAR ==================== -->
+<div id="compareBar" class="fixed-bottom bg-dark border-top border-secondary p-3 shadow-lg" style="display:none;z-index:1050;backdrop-filter:blur(10px);">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h5 class="m-0 text-white"><span id="compareCount">0</span> cars selected for comparison</h5>
+        <div>
+            <button class="btn btn-outline-light me-2" onclick="clearCompare()">Clear</button>
+            <button class="btn btn-gradient" onclick="showCompareModal()"><i class="bi bi-arrow-left-right me-2"></i>Compare Now</button>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== CAR DETAIL MODAL ==================== -->
 <div class="modal fade" id="carModal" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content bg-dark text-white border-secondary">
@@ -689,65 +1707,228 @@
     </div>
 </div>
 
+<!-- ==================== GALLERY MODAL ==================== -->
+<div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content border-0" style="background:#0a0a0a;">
+            <div class="modal-header border-0 pb-0">
+                <div>
+                    <h4 class="modal-title text-white fw-bold mb-0" id="galleryCarName"></h4>
+                    <p class="text-muted small mb-0" id="galleryCarSubtitle"></p>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <span class="text-muted small" id="galleryCounter">1 / 1</span>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+            </div>
+            <div class="modal-body pt-2 pb-2">
+                <!-- Main Image -->
+                <div class="position-relative" style="background:#111;border-radius:12px;overflow:hidden;">
+                    <img id="galleryMainImage" src="" alt="Gallery" style="width:100%;max-height:520px;object-fit:contain;transition:opacity 0.25s ease;display:block;margin:auto;">
+                    <!-- Prev/Next arrows -->
+                    <button id="galleryPrev" class="gallery-arrow gallery-arrow-left">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+                    <button id="galleryNext" class="gallery-arrow gallery-arrow-right">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+                <!-- Thumbnails -->
+                <div id="galleryThumbs" class="d-flex gap-2 mt-3 flex-wrap justify-content-center pb-2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== TEST DRIVE MODAL ==================== -->
+<div class="modal fade" id="testDriveModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background:#0f0f0f;border:1px solid #2a2a2a;color:#fff;">
+            <div class="modal-header" style="border-bottom:1px solid #222;">
+                <div>
+                    <h5 class="modal-title mb-0"><i class="bi bi-calendar-check text-primary me-2"></i>Book a Test Drive</h5>
+                    <p class="text-muted small mb-0 mt-1">Reserve your exclusive slot at Edelhaus</p>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <!-- User account info banner -->
+                <div class="td-user-banner mb-3">
+                    <i class="bi bi-shield-check text-success me-2"></i>
+                    <span class="small">Your name & email are pre-filled from your account</span>
+                </div>
+                <form id="tdForm" novalidate>
+                    <input type="hidden" id="tdCarId">
+                    <div class="mb-3">
+                        <label class="form-label small text-muted" style="letter-spacing:1px;font-size:0.72rem;">VEHICLE</label>
+                        <input type="text" class="form-control" id="tdCarName" readonly
+                               style="background:#1a1a1a;opacity:0.7;cursor:not-allowed;">
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label small text-muted" style="letter-spacing:1px;font-size:0.72rem;">
+                                FULL NAME <span class="text-primary">(from account)</span>
+                            </label>
+                            <input type="text" class="form-control" id="tdName" required minlength="2">
+                            <div class="invalid-feedback">Name required.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small text-muted" style="letter-spacing:1px;font-size:0.72rem;">PHONE NUMBER *</label>
+                            <input type="tel" class="form-control" id="tdPhone" placeholder="98765 43210"
+                                   required pattern="[0-9+\s\-]{10,15}">
+                            <div class="invalid-feedback">Enter a valid phone number (10–15 digits).</div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small text-muted" style="letter-spacing:1px;font-size:0.72rem;">
+                                EMAIL <span class="text-primary">(from account)</span>
+                            </label>
+                            <input type="email" class="form-control" id="tdEmail" required>
+                            <div class="invalid-feedback">Valid email required.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small text-muted" style="letter-spacing:1px;font-size:0.72rem;">PREFERRED DATE *</label>
+                            <input type="date" class="form-control" id="tdDate" required>
+                            <div class="invalid-feedback">Please select a date.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small text-muted" style="letter-spacing:1px;font-size:0.72rem;">PREFERRED TIME *</label>
+                            <select class="form-select" id="tdTime" required>
+                                <option value="" disabled selected>Select time</option>
+                                <option value="10:00 AM">10:00 AM</option>
+                                <option value="11:00 AM">11:00 AM</option>
+                                <option value="12:00 PM">12:00 PM</option>
+                                <option value="2:00 PM">2:00 PM</option>
+                                <option value="3:00 PM">3:00 PM</option>
+                                <option value="4:00 PM">4:00 PM</option>
+                                <option value="5:00 PM">5:00 PM</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a time.</div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small text-muted" style="letter-spacing:1px;font-size:0.72rem;">SPECIAL REQUESTS (OPTIONAL)</label>
+                            <textarea class="form-control" id="tdNotes" rows="2"
+                                      placeholder="Any specific requests or questions..."></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-gradient w-100 py-3 mt-4 fw-bold" style="letter-spacing:1.5px;">
+                        <i class="bi bi-calendar-check me-2"></i>CONFIRM BOOKING
+                    </button>
+                    <p class="text-muted text-center small mt-3 mb-0">
+                        <i class="bi bi-database-lock me-1 text-primary"></i>
+                        Saved to your browser — visible in <strong>My Bookings</strong> after refresh
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== LOGIN / SIGNUP MODAL ==================== -->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content" style="background-color: #121212; border: 1px solid #333; color: white;">
-            <div class="modal-header border-secondary">
-                <ul class="nav nav-pills" id="pills-tab" role="tablist">
+        <div class="modal-content" style="background:#0f0f0f;border:1px solid #2a2a2a;color:#fff;">
+            <div class="modal-header" style="border-bottom:1px solid #222;">
+                <ul class="nav nav-pills gap-2" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active bg-transparent text-white" id="tab-login" data-bs-toggle="pill" data-bs-target="#content-login">LOG IN</button>
+                        <button class="nav-link active bg-transparent text-white fw-bold" id="tab-login"
+                                data-bs-toggle="pill" data-bs-target="#content-login"
+                                style="letter-spacing:1.5px;font-size:0.8rem;">LOG IN</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link bg-transparent text-white" id="tab-signup" data-bs-toggle="pill" data-bs-target="#content-signup">SIGN UP</button>
+                        <button class="nav-link bg-transparent text-white fw-bold" id="tab-signup"
+                                data-bs-toggle="pill" data-bs-target="#content-signup"
+                                style="letter-spacing:1.5px;font-size:0.8rem;">SIGN UP</button>
                     </li>
                 </ul>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
 
+            <!-- Auth prompt message (shown when redirected from test drive) -->
+            <div id="loginModalPrompt" style="display:none;padding:12px 24px 0;"></div>
+
             <div class="modal-body p-4">
                 <div class="tab-content">
+
+                    <!-- LOGIN TAB -->
                     <div class="tab-pane fade show active" id="content-login">
+                        <p class="text-muted small mb-3">Welcome back to Edelhaus</p>
+                        <!-- Error message -->
+                        <div id="loginError" class="alert alert-danger py-2 mb-3" style="display:none;background:rgba(231,76,60,0.15);border:1px solid #e74c3c;border-radius:8px;font-size:0.85rem;">
+                            <i class="bi bi-exclamation-circle me-2"></i>Incorrect email or password. Please try again.
+                        </div>
                         <form id="authLoginForm" novalidate>
                             <div class="mb-3">
-                                <label class="text-muted small mb-2">EMAIL ADDRESS</label>
-                                <input type="email" class="form-control" id="loginEmail" required>
+                                <label class="form-label text-muted small" style="letter-spacing:1px;font-size:0.72rem;">EMAIL ADDRESS</label>
+                                <input type="email" class="form-control" id="loginEmail" placeholder="name@example.com" required>
                                 <div class="invalid-feedback">Please enter a valid email.</div>
                             </div>
                             <div class="mb-4">
-                                <label class="text-muted small mb-2">PASSWORD</label>
-                                <input type="password" class="form-control" id="loginPass" required>
+                                <label class="form-label text-muted small" style="letter-spacing:1px;font-size:0.72rem;">PASSWORD</label>
+                                <input type="password" class="form-control" id="loginPass" placeholder="Your password" required>
+                                <div class="invalid-feedback">Please enter your password.</div>
                             </div>
-                            <button type="submit" class="btn btn-gradient w-100 py-2 fw-bold">ENTER SHOWROOM</button>
+                            <button type="submit" class="btn btn-gradient w-100 py-2 fw-bold" style="letter-spacing:1.5px;">
+                                ENTER SHOWROOM
+                            </button>
                         </form>
+                        <p class="text-center text-muted small mt-3 mb-0">
+                            No account? <a href="#" onclick="document.getElementById('tab-signup').click()" class="text-primary text-decoration-none">Create one for free →</a>
+                        </p>
                     </div>
 
+                    <!-- SIGNUP TAB -->
                     <div class="tab-pane fade" id="content-signup">
+                        <p class="text-muted small mb-3">Join Edelhaus — it takes 30 seconds</p>
                         <form id="authSignupForm" novalidate>
                             <div class="mb-3">
-                                <label class="text-muted small mb-2">FULL NAME</label>
-                                <input type="text" class="form-control" id="regName" required minlength="3">
+                                <label class="form-label text-muted small" style="letter-spacing:1px;font-size:0.72rem;">FULL NAME *</label>
+                                <input type="text" class="form-control" id="regName" placeholder="Your full name" required minlength="3">
+                                <div class="invalid-feedback">Name must be at least 3 characters.</div>
                             </div>
                             <div class="mb-3">
-                                <label class="text-muted small mb-2">PHONE NUMBER</label>
-                                <input type="tel" class="form-control" id="regPhone" required pattern="[0-9]{10}">
+                                <label class="form-label text-muted small" style="letter-spacing:1px;font-size:0.72rem;">EMAIL ADDRESS *</label>
+                                <input type="email" class="form-control" id="regEmail" placeholder="name@example.com" required>
+                                <div class="invalid-feedback">Please enter a valid email.</div>
                             </div>
                             <div class="mb-3">
-                                <label class="text-muted small mb-2">EMAIL ADDRESS</label>
-                                <input type="email" class="form-control" id="regEmail" required>
+                                <label class="form-label text-muted small" style="letter-spacing:1px;font-size:0.72rem;">CREATE PASSWORD * (min. 6 chars)</label>
+                                <input type="password" class="form-control" id="regPass" placeholder="Create a strong password" required minlength="6">
+                                <div class="invalid-feedback">Password must be at least 6 characters.</div>
                             </div>
                             <div class="mb-4">
-                                <label class="text-muted small mb-2">CREATE PASSWORD</label>
-                                <input type="password" class="form-control" id="regPass" required minlength="6">
+                                <label class="form-label text-muted small" style="letter-spacing:1px;font-size:0.72rem;">COUNTRY *</label>
+                                <select class="form-select" id="regCountry" required>
+                                    <option value="" disabled selected>Select your country</option>
+                                    <option>India</option>
+                                    <option>United States</option>
+                                    <option>United Kingdom</option>
+                                    <option>United Arab Emirates</option>
+                                    <option>Germany</option>
+                                    <option>France</option>
+                                    <option>Japan</option>
+                                    <option>Australia</option>
+                                    <option>Singapore</option>
+                                    <option>Canada</option>
+                                    <option>Other</option>
+                                </select>
+                                <div class="invalid-feedback">Please select your country.</div>
                             </div>
-                            <button type="submit" class="btn btn-gradient w-100 py-2 fw-bold">CREATE ACCOUNT</button>
+                            <button type="submit" class="btn btn-gradient w-100 py-2 fw-bold" style="letter-spacing:1.5px;">
+                                CREATE ACCOUNT
+                            </button>
                         </form>
+                        <p class="text-center text-muted small mt-3 mb-0">
+                            Already have an account? <a href="#" onclick="document.getElementById('tab-login').click()" class="text-primary text-decoration-none">Log in →</a>
+                        </p>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- ==================== COMPARE MODAL ==================== -->
 <div class="modal fade" id="compareModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content bg-dark text-white border-secondary">
@@ -767,18 +1948,37 @@
     </div>
 </div>
 
-<div id="compareBar" class="fixed-bottom bg-dark border-top border-secondary p-3 shadow-lg" style="display: none; z-index: 1050;">
-    <div class="container d-flex justify-content-between align-items-center">
-        <h5 class="m-0 text-white"><span id="compareCount">0</span> cars selected</h5>
-        <div>
-            <button class="btn btn-outline-light me-2" onclick="clearCompare()">Clear</button>
-            <button class="btn btn-gradient" onclick="showCompareModal()">Compare Now</button>
+
+
+
+<!-- ==================== 360° VIEW MODAL ==================== -->
+<div class="modal fade" id="view360Modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content text-white"
+             style="background:#111;border:1px solid #2a2a2a;border-radius:20px;">
+            <div class="modal-header" style="border-bottom:1px solid #2a2a2a;">
+                <h5 class="modal-title" id="view360Title"
+                    style="font-size:1rem;letter-spacing:1px;">
+                    <i class="bi bi-arrow-repeat me-2 text-primary"></i>
+                    360° Vehicle View
+                </h5>
+                <button type="button" class="btn-close btn-close-white"
+                        data-bs-dismiss="modal"></button>
+            </div>
+                        <div class="modal-body p-4 text-center">
+                <div style="background:#1a1a1a;border-radius:16px;padding:40px 20px;">
+                    <i class="bi bi-arrow-repeat display-1 text-primary mb-3" style="animation:spin 2s linear infinite;"></i>
+                    <h5 class="text-white mb-2">360° View</h5>
+                    <p class="text-muted">Interactive 360° view coming soon for this vehicle.</p>
+                    <button class="btn btn-gradient mt-3 px-4" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="first.js"></script>
-
 </body>
 </html>
