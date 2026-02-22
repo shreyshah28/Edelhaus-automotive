@@ -12,7 +12,7 @@
         "year": "2023",
         "status": "In Stock",
         "featured": true,
-        "images": ["BENTALY/BENTALY_CONTINENTAL_GT/BENTALY_CONTINENTAL_GT1.jpg","BENTALY/BENTALY_CONTINENTAL_GT/BENTALY_CONTINENTAL_GT2.jpg","BENTALY/BENTALY_CONTINENTAL_GT/BENTALY_CONTINENTAL_GT4.jpg"],
+        "images": ["BENTALY/BENTALY_CONTINENTAL_GT/BENTALY_CONTINENTAL_GT1.jpg","BENTALY/BENTALY_CONTINENTAL_GT/BENTALY_CONTINENTAL_GT2.jpg","BENTALY/BENTALY_CONTINENTAL_GT/BENTALY_CONTINENTAL_GT4.jpg","MERCEDES_BENZ/G-WAGON/G_WAGON1.webp","MERCEDES_BENZ/G-WAGON/G_WAGON2.webp","MERCEDES_BENZ/MAYBATCH_S680/mercedes_maybach_s_680_1.jpg","RANGE_ROVER/RANGE_ROVER_SV/Range_Rover_Sport_Sv.webp"],
         "engine": "6.0L W12",
         "description": "The perfect blend of luxury and performance.",
         "colors": [
@@ -242,4 +242,5 @@
         "engine": "3.8L Twin-Turbo Flat-6",
         "description": "The iconic 911 at its finest."
     }
+    
 ]

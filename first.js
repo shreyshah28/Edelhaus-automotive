@@ -1754,20 +1754,162 @@ function logoutUser() {
     showPage('home');
 }
 
-// ==============================================================
-//  BRAND REDIRECT & COMING SOON
-// ==============================================================
 function filterByBrandRedirect(b){showPage('inventory');setTimeout(()=>{filterCars(b);updateStockDisplay(b);document.getElementById('inventoryGrid')?.scrollIntoView({behavior:'smooth',block:'start'});},100);}
 
 // ==============================================================
-//  360° VIEW
+//  360° VIEW  — drag-to-spin using the car's image array
 // ==============================================================
-function open360View(carId) {
-    const car = carsData.find(c => c.id === carId);
-    const title = document.getElementById('view360Title');
-    if (title && car) title.innerHTML = `<i class="bi bi-arrow-repeat me-2 text-primary"></i>360° View — ${car.name}`;
-    new bootstrap.Modal(document.getElementById('view360Modal')).show();
-}
+(function() {
+    // Private state for the viewer
+    let _frames   = [];
+    let _frameIdx = 0;
+    let _dragging = false;
+    let _startX   = 0;
+    let _lastX    = 0;
+    let _autoTimer= null;
+    let _hintGone = false;
+    const DRAG_SENSITIVITY = 18; // px per frame step
+
+    function setFrame(idx) {
+        if (!_frames.length) return;
+        _frameIdx = ((idx % _frames.length) + _frames.length) % _frames.length;
+        const img = document.getElementById('viewer360Img');
+        const bar = document.getElementById('viewer360Bar');
+        const ctr = document.getElementById('viewer360Counter');
+        if (img) img.src = _frames[_frameIdx];
+        if (bar) bar.style.width = ((_frameIdx + 1) / _frames.length * 100) + '%';
+        if (ctr) ctr.textContent = (_frameIdx + 1) + ' / ' + _frames.length;
+    }
+
+    function hideHint() {
+        if (_hintGone) return;
+        _hintGone = true;
+        const hint = document.getElementById('viewer360Hint');
+        if (hint) { hint.style.opacity = '0'; setTimeout(() => { if (hint) hint.style.display = 'none'; }, 500); }
+    }
+
+    function startAuto() {
+        stopAuto();
+        const btn = document.getElementById('btn360Play');
+        if (btn) btn.innerHTML = '<i class="bi bi-stop-fill me-1"></i>STOP';
+        _autoTimer = setInterval(() => setFrame(_frameIdx + 1), 150);
+        hideHint();
+    }
+
+    function stopAuto() {
+        if (_autoTimer) { clearInterval(_autoTimer); _autoTimer = null; }
+        const btn = document.getElementById('btn360Play');
+        if (btn) btn.innerHTML = '<i class="bi bi-play-fill me-1"></i>AUTO';
+    }
+
+    function onPointerDown(e) {
+        _dragging = true;
+        _startX   = e.clientX ?? e.touches?.[0]?.clientX ?? 0;
+        _lastX    = _startX;
+        stopAuto();
+        hideHint();
+        const wrap = document.getElementById('viewer360Container');
+        if (wrap) wrap.style.cursor = 'grabbing';
+    }
+
+    function onPointerMove(e) {
+        if (!_dragging) return;
+        const x   = e.clientX ?? e.touches?.[0]?.clientX ?? _lastX;
+        const dx  = x - _lastX;
+        if (Math.abs(dx) >= DRAG_SENSITIVITY) {
+            setFrame(_frameIdx + (dx > 0 ? -1 : 1));
+            _lastX = x;
+        }
+    }
+
+    function onPointerUp() {
+        _dragging = false;
+        const wrap = document.getElementById('viewer360Container');
+        if (wrap) wrap.style.cursor = 'grab';
+    }
+
+    function initViewerEvents() {
+        const wrap = document.getElementById('viewer360Container');
+        if (!wrap || wrap._360_init) return;
+        wrap._360_init = true;
+
+        // Mouse
+        wrap.addEventListener('mousedown',  onPointerDown);
+        window.addEventListener('mousemove', onPointerMove);
+        window.addEventListener('mouseup',   onPointerUp);
+
+        // Touch
+        wrap.addEventListener('touchstart', onPointerDown,  { passive:true });
+        wrap.addEventListener('touchmove',  onPointerMove,  { passive:true });
+        wrap.addEventListener('touchend',   onPointerUp);
+
+        // Buttons
+        document.getElementById('btn360Prev')?.addEventListener('click', () => { stopAuto(); setFrame(_frameIdx - 1); });
+        document.getElementById('btn360Next')?.addEventListener('click', () => { stopAuto(); setFrame(_frameIdx + 1); });
+        document.getElementById('btn360Play')?.addEventListener('click', () => {
+            if (_autoTimer) stopAuto(); else startAuto();
+        });
+
+        // Clean up auto-play when modal closes
+        document.getElementById('view360Modal')?.addEventListener('hidden.bs.modal', () => {
+            stopAuto();
+            _frames = []; _frameIdx = 0; _hintGone = false;
+            const hint = document.getElementById('viewer360Hint');
+            if (hint) { hint.style.opacity = '1'; hint.style.display = 'flex'; }
+            wrap._360_init = false;
+        }, { once: false });
+    }
+
+    // Expose the public open function
+    window.open360View = function(carId) {
+        const car = carsData.find(c => c.id === carId);
+        if (!car) return;
+
+        // Build frames list — use all available images
+        _frames   = (car.images && car.images.length) ? [...car.images] : [];
+        _frameIdx = 0;
+        _hintGone = false;
+
+        if (!_frames.length) {
+            alert('No images available for 360° view on this vehicle.');
+            return;
+        }
+
+        // Update modal title
+        const title = document.getElementById('view360Title');
+        if (title) title.innerHTML = `<i class="bi bi-arrow-repeat me-2 text-primary"></i>360° View — ${car.name}`;
+
+        // Restore hint visibility for new car
+        const hint = document.getElementById('viewer360Hint');
+        if (hint) { hint.style.opacity = '1'; hint.style.display = 'flex'; }
+
+        // Reset progress bar & counter
+        const bar = document.getElementById('viewer360Bar');
+        const ctr = document.getElementById('viewer360Counter');
+        if (bar) bar.style.width = '0%';
+        if (ctr) ctr.textContent = '1 / ' + _frames.length;
+
+        // Set first frame immediately
+        const img = document.getElementById('viewer360Img');
+        if (img) img.src = _frames[0];
+
+        // Show modal, then wire up events (elements exist in DOM now)
+        const modal = new bootstrap.Modal(document.getElementById('view360Modal'));
+        modal.show();
+
+        // Init drag/button listeners after modal is visible
+        document.getElementById('view360Modal').addEventListener('shown.bs.modal', () => {
+            initViewerEvents();
+            setFrame(0);
+            // Auto-start a short preview spin so user sees it works
+            let preview = 0;
+            const spin = setInterval(() => {
+                setFrame(_frameIdx + 1);
+                if (++preview >= _frames.length) { clearInterval(spin); stopAuto(); }
+            }, 120);
+        }, { once: true });
+    };
+})();
 function showComingSoon(brand){document.getElementById('carTitle').innerText=brand;document.getElementById('carBody').innerHTML=`<div class="text-center py-5"><i class="bi bi-cone-striped display-1 text-warning mb-4"></i><h3 class="text-white fw-bold">Stock Currently Unavailable</h3><p class="text-muted fs-5 mt-3">We are sourcing <span class="text-white fw-bold">${brand}</span> for our showroom.</p><div class="mt-4"><span class="badge bg-dark border border-secondary p-2">Status: Coming Soon</span></div><button class="btn btn-outline-light mt-4 px-4" data-bs-dismiss="modal">Close</button></div>`;new bootstrap.Modal(document.getElementById('carModal')).show();}
 
 // ==============================================================
